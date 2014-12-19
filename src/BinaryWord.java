@@ -10,7 +10,7 @@ public class BinaryWord {
 	public int[] toArray() {
 		return content;
 	}
-	
+
 	public BinaryWord(int[] input) {
 		this.content = input;
 	}
@@ -23,26 +23,50 @@ public class BinaryWord {
 			content[i] = new Integer("" + input.charAt(i));
 		}
 	}
-	
-	//TODO do XOR with Integer and not String
+
+	// TODO do XOR with Integer and not String
 	public BinaryWord add(BinaryWord suplement) {
-		if(this.getDimension() != suplement.getDimension()) {
+		if (this.getDimension() != suplement.getDimension()) {
 			// TODO
 			System.err.println("MISSMATCH");
 
 			System.err.println("You try to xor a " + this.getDimension()
-					+ " bit word with a " + suplement.getDimension() + " bit word");
+					+ " bit word with a " + suplement.getDimension()
+					+ " bit word");
 		}
-		
+
 		int x1 = Integer.parseInt(this.toString(), 2);
 		int x2 = Integer.parseInt(suplement.toString(), 2);
-		String sum = Integer.toBinaryString(x1 ^ x2); // sum may have no leading zeros
-		
+		String sum = Integer.toBinaryString(x1 ^ x2); // sum may have no leading
+														// zeros
+
 		while (sum.length() != this.getDimension()) {
 			sum = "0" + sum;
 		}
-		
+
 		return new BinaryWord(sum);
+	}
+
+	/**
+	 * Compute the Hamming distance between this and a given binary word 
+	 * @param Binary word to compare to
+	 * @return Hamming distance between the compared words
+	 */
+	public int hammingDistance(BinaryWord x) {
+		if (x.getDimension() != this.getDimension()) {
+			System.err.println("can not comput the hamming distance between a "
+					+ x.getDimension() + " bit word and a "
+					+ this.getDimension() + " bit word");
+			return -1;
+		}
+	
+		int distance = 0;
+		for (int i = 1; i <= this.getDimension(); i++) {
+			if (x.getElement(i) != this.getElement(i))
+				distance++;
+		}
+
+		return distance;
 	}
 
 	public int getDimension() {

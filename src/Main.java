@@ -5,6 +5,8 @@ public class Main {
 		
 		BinaryWord input = new BinaryWord("0011");
 		
+		System.out.println("distance: " + input.hammingDistance(new BinaryWord("1011")));
+		
 		String[] hamming7x4 = {"0001101", "0011001", "0101010", "1000011"};
 		
 		BinaryMatrix g_transposed = new BinaryMatrix(hamming7x4); 
