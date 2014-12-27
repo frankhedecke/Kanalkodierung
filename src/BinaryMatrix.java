@@ -2,10 +2,24 @@ public class BinaryMatrix {
 
 	private int[][] content;
 
-	public BinaryMatrix(int dimension_m, int dimension_n) {
-		this.content = new int[dimension_m][dimension_n];
+	/**
+	 * Constructs an empty M x N BinaryMatrix
+	 * 
+	 * @param dimensionM
+	 *            of the matrix
+	 * @param dimensionN
+	 *            of the matrix
+	 */
+	public BinaryMatrix(int dimensionM, int dimensionN) {
+		this.content = new int[dimensionM][dimensionN];
 	}
 
+	/**
+	 * Constructs a BinaryMatrix for a given set of rows
+	 * 
+	 * @param rows
+	 *            of the new BinaryMatrix
+	 */
 	public BinaryMatrix(String[] rows) {
 		this.content = new int[rows.length][];
 		for (int i = 0; i < rows.length; i++) {
@@ -14,19 +28,22 @@ public class BinaryMatrix {
 		}
 	}
 
-	// TODO implement
-	// TODO adding is limited to 32 bit
+	/**
+	 * Multiplies a M x N BinaryMatrix with a M-bit BinaryWord
+	 * 
+	 * @param x
+	 *            a M-bit BinaryWord
+	 * @return product (N-bit BinaryWord) from the multiplication
+	 */
 	public BinaryWord multiplyM(BinaryWord x) {
-		if (x.getDimension() != this.getDimensionM()) {
-			// TODO
+		if (x.getLength() != this.getDimensionM()) {
 			System.err.println("MISSMATCH");
 
-			System.err.println("You try to multiply a " + x.getDimension()
+			System.err.println("You try to multiply a " + x.getLength()
 					+ " bit word with a " + this.getDimensionM() + "X"
 					+ this.getDimensionN() + " Matrix.");
 		}
 
-		// matrix X vector
 		BinaryWord out = new BinaryWord(this.getDimensionN());
 		for (int i = 1; i <= this.getDimensionM(); i++) {
 			if (x.getElement(i) == 1) {
@@ -37,7 +54,7 @@ public class BinaryMatrix {
 	}
 
 	/**
-	 * transpose the m X n matrix in a n X m matrix
+	 * Transposes the M x N BinaryMatrix into a N x M BinaryMatrix
 	 */
 	public void transpose() {
 
@@ -50,24 +67,54 @@ public class BinaryMatrix {
 		this.content = newMatrix;
 	}
 
+	/**
+	 * Get the element at the position (row, column)
+	 * 
+	 * @param row
+	 *            of the specified element
+	 * @param column
+	 *            of the specified element
+	 * @return element at the position (row, column)
+	 */
 	public int getElement(int row, int column) {
 		return this.content[row - 1][column - 1];
 	}
 
-	public void setElement(int row, int column, int value) {
-		this.content[row - 1][column - 1] = value;
+	/**
+	 * Overwrites a specified element with a new value
+	 * 
+	 * @param row
+	 *            to specify the element
+	 * @param column
+	 *            to specify the element
+	 * @param newValue
+	 *            of the specified element
+	 */
+	public void setElement(int row, int column, int newValue) {
+		this.content[row - 1][column - 1] = newValue;
 	}
 
+	/**
+	 * Returns a specified row
+	 * 
+	 * @param rowNumber
+	 *            to specify the row
+	 * @return the specified row of the BinaryMatrix
+	 */
 	public BinaryWord getRow(int rowNumber) {
 		return new BinaryWord(this.content[rowNumber - 1]);
 	}
 
-	public void setRow(int rowNumber, int[] row) {
-		this.content[rowNumber - 1] = row;
-	}
-
-	public void setRow(int rowNumber, BinaryWord row) {
-		this.content[rowNumber - 1] = row.toArray();
+	/**
+	 * Overwrites a specified row
+	 * 
+	 * @param rowNumber
+	 *            to specify the row
+	 * @param newRow
+	 *            of the BinaryMatrix
+	 */
+	public void setRow(int rowNumber, BinaryWord newRow) {
+		this.content[rowNumber - 1] = newRow.toArray();
 	}
 
 	/**
@@ -84,6 +131,9 @@ public class BinaryMatrix {
 		return content[0].length;
 	}
 
+	/**
+	 * Prints the matrix to the console
+	 */
 	public void print() {
 		for (int i = 0; i < this.content.length; i++) {
 			for (int j = 0; j < this.content[i].length; j++) {
