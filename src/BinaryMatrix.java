@@ -36,6 +36,20 @@ public class BinaryMatrix {
 		return out;
 	}
 
+	/**
+	 * transpose the m X n matrix in a n X m matrix
+	 */
+	public void transpose() {
+
+		int[][] newMatrix = new int[this.getDimensionN()][this.getDimensionM()];
+		for (int i = 0; i < this.getDimensionM(); i++) {
+			for (int j = 0; j < this.getDimensionN(); j++) {
+				newMatrix[j][i] = this.content[i][j];
+			}
+		}
+		this.content = newMatrix;
+	}
+
 	public int getElement(int row, int column) {
 		return this.content[row - 1][column - 1];
 	}
