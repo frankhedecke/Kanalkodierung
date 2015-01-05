@@ -102,6 +102,36 @@ public class BinaryWord {
 
 		return distance;
 	}
+	
+	/**
+	 * reverse the BinaryWord
+	 *   (001110) -> (011100)
+	 */
+	public void reverse() {
+		
+		int length = this.getLength();
+		int[] newContent = new int[length];
+		
+		
+		for (int i = 0; i < length; i++) {
+			newContent[i] = content[length - i - 1];
+		}
+		
+		this.content = newContent;
+	}
+
+	/**
+	 * Checks if the BinaryWord is the NullWord
+	 * 
+	 * @return true if the BinaryWord is the NullWord - false otherwise
+	 */
+	public boolean isNullWord() {
+		if (this.toDecimal() == 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	/**
 	 * Get the length of the BinaryWord
@@ -133,6 +163,29 @@ public class BinaryWord {
 	 */
 	public void setElement(int number, int newValue) {
 		this.content[number - 1] = newValue;
+	}
+
+	/**
+	 * Toggles the specified bit
+	 * 
+	 * @param number
+	 *            of the bit
+	 */
+	public void toggleElement(int number) {
+		if (this.content[number - 1] == 1) {
+			this.content[number - 1] = 0;
+		} else {
+			this.content[number - 1] = 1;
+		}
+	}
+
+	/**
+	 * Converts to int (decimal)
+	 * 
+	 * @return decimal int representation of the BinaryWord
+	 */
+	public int toDecimal() {
+		return Integer.parseInt(this.toString(), 2);
 	}
 
 	@Override

@@ -52,6 +52,35 @@ public class BinaryMatrix {
 		}
 		return out;
 	}
+	
+	/**
+	 * Multiplies a M x N BinaryMatrix with a M-bit BinaryWord
+	 * 
+	 * @param x
+	 *            a N-bit BinaryWord
+	 * @return product (M-bit BinaryWord) from the multiplication
+	 */
+	public BinaryWord multiplyN(BinaryWord x) {
+		if (x.getLength() != this.getDimensionN()) {
+			System.err.println("MISSMATCH");
+
+			System.err.println("You try to multiply a " + x.getLength()
+					+ " bit word with a " + this.getDimensionN() + "X"
+					+ this.getDimensionN() + " Matrix.");
+		}
+		
+		this.transpose();
+
+		BinaryWord out = new BinaryWord(this.getDimensionN());
+		for (int i = 1; i <= this.getDimensionM(); i++) {
+			if (x.getElement(i) == 1) {
+				out = out.add(this.getRow(i));
+			}
+		}
+		
+		this.transpose();
+		return out;
+	}
 
 	/**
 	 * Transposes the M x N BinaryMatrix into a N x M BinaryMatrix
