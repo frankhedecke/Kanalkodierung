@@ -1,4 +1,4 @@
-public class HammingCode_4 implements Code {
+public class HammingCode_4 implements BlockCode {
 
 	private BinaryMatrix generatorMatrix;
 	private BinaryMatrix controlMatrix;
