@@ -6,6 +6,8 @@ public class Main {
 
 		RandomSource random = new RandomSource(2, 1337l);
 
+		ErrorSource error = new ErrorSource(5, 1337l);
+
 		Channel encodeChannel = code.getEncodeChannel();
 		Channel decodeChannel = code.getDecodeChannel();
 
@@ -32,6 +34,15 @@ public class Main {
 		while (decodeChannel.hasOutput()) {
 			int bit = decodeChannel.getOutput();
 			System.out.print(bit);
+		}
+
+		System.out.println("\n\nerror word");
+
+		for (int i = 0; i < 100; i++) {
+			if (error.hasOutput()) {
+				int bit = error.getOutput();
+				System.out.print(bit);
+			}
 		}
 	}
 }
