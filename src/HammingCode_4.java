@@ -69,9 +69,9 @@ public class HammingCode_4 implements BlockCode {
 		return 4;
 	}
 
-	@Override // TODO implement
+	@Override
 	public Channel getDecodeChannel() {
-		return null;
+		return new AbstractDecodeChannel(this);
 	}
 
 	@Override

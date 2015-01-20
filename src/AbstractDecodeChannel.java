@@ -1,17 +1,18 @@
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
 
-public class AbstractEncodeChannel implements Channel {
+public class AbstractDecodeChannel implements Channel {
 
 	private BlockCode code;
 	private int[] inputBuffer;
 	private int inputPtr;
 	private List<Integer> buffer;
 
-	public AbstractEncodeChannel(BlockCode code) {
+	public AbstractDecodeChannel(BlockCode code) {
 		this.code = code;
 		this.buffer = new LinkedList<Integer>();
 		// maybe N+1 ?
-		this.inputBuffer = new int[code.getL()];
+		this.inputBuffer = new int[code.getN()];
 		this.inputPtr = 0;
 	}
 
@@ -37,7 +38,7 @@ public class AbstractEncodeChannel implements Channel {
 			BinaryWord input = new BinaryWord(inputBuffer);
 			input.reverse();
 			// TODO delete/overwrite inputBuffer?
-			BinaryWord output = code.encode(input);
+			BinaryWord output = code.decode(input);
 
 			for (int i : output.toArray()) {
 				buffer.add(i);
