@@ -11,7 +11,6 @@ public class AbstractDecodeChannel implements Channel {
 	public AbstractDecodeChannel(BlockCode code) {
 		this.code = code;
 		this.buffer = new LinkedList<Integer>();
-		// maybe N+1 ?
 		this.inputBuffer = new int[code.getN()];
 		this.inputPtr = 0;
 	}
@@ -37,7 +36,7 @@ public class AbstractDecodeChannel implements Channel {
 
 			BinaryWord input = new BinaryWord(inputBuffer);
 			input.reverse();
-			// TODO delete/overwrite inputBuffer?
+
 			BinaryWord output = code.decode(input);
 
 			for (int i : output.toArray()) {

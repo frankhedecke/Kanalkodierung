@@ -10,7 +10,6 @@ public class AbstractEncodeChannel implements Channel {
 	public AbstractEncodeChannel(BlockCode code) {
 		this.code = code;
 		this.buffer = new LinkedList<Integer>();
-		// maybe N+1 ?
 		this.inputBuffer = new int[code.getL()];
 		this.inputPtr = 0;
 	}
@@ -36,7 +35,7 @@ public class AbstractEncodeChannel implements Channel {
 
 			BinaryWord input = new BinaryWord(inputBuffer);
 			input.reverse();
-			// TODO delete/overwrite inputBuffer?
+			
 			BinaryWord output = code.encode(input);
 
 			for (int i : output.toArray()) {
