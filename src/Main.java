@@ -6,14 +6,15 @@ public class Main {
 
 		RandomSource random = new RandomSource(2, 1337l);
 
-		ErrorSource error = new ErrorSource(5, 1337l);
+		ErrorSource error = new ErrorSource(25, 1337l);
 
 		Channel encodeChannel = code.getEncodeChannel();
+		Channel noisyChannel = new NoisyChannel(error);
 		Channel decodeChannel = code.getDecodeChannel();
 
 		System.out.println("input data");
 
-		for (int i = 0; i < 50; i++) {
+		for (int i = 0; i < 40; i++) {
 			if (random.hasOutput()) {
 				int bit = random.getOutput();
 				System.out.print(bit);
@@ -26,6 +27,14 @@ public class Main {
 		while (encodeChannel.hasOutput()) {
 			int bit = encodeChannel.getOutput();
 			System.out.print(bit);
+			noisyChannel.pushInput(bit);
+		}
+
+		System.out.println("\n\nencoded data with noise");
+
+		while (noisyChannel.hasOutput()) {
+			int bit = noisyChannel.getOutput();
+			System.out.print(bit);
 			decodeChannel.pushInput(bit);
 		}
 
@@ -34,15 +43,6 @@ public class Main {
 		while (decodeChannel.hasOutput()) {
 			int bit = decodeChannel.getOutput();
 			System.out.print(bit);
-		}
-
-		System.out.println("\n\nerror word");
-
-		for (int i = 0; i < 100; i++) {
-			if (error.hasOutput()) {
-				int bit = error.getOutput();
-				System.out.print(bit);
-			}
 		}
 	}
 }
