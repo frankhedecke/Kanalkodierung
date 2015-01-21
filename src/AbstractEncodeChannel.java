@@ -32,16 +32,12 @@ public class AbstractEncodeChannel implements Channel {
 
 		if (this.inputPtr == this.inputBuffer.length) {
 			this.inputPtr = 0;
-
 			BinaryWord input = new BinaryWord(inputBuffer);
-			input.reverse();
-			
 			BinaryWord output = code.encode(input);
 
 			for (int i : output.toArray()) {
 				buffer.add(i);
 			}
-
 		}
 	}
 }
