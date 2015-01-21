@@ -22,7 +22,7 @@ public class AbstractDecodeChannel implements Channel {
 
 	@Override
 	public int getOutput() {
-		int bit = buffer.remove(buffer.size() - 1);
+		int bit = buffer.remove(0);
 		return bit;
 	}
 
