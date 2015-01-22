@@ -1,14 +1,14 @@
 import java.util.LinkedList;
 import java.util.List;
 
-public class AbstractDecodeChannel implements Channel {
+public class DecodeChannel implements Channel {
 
 	private BlockCode code;
 	private int[] inputBuffer;
 	private int inputPtr;
 	private List<Integer> buffer;
 
-	public AbstractDecodeChannel(BlockCode code) {
+	public DecodeChannel(BlockCode code) {
 		this.code = code;
 		this.buffer = new LinkedList<Integer>();
 		this.inputBuffer = new int[code.getN()];

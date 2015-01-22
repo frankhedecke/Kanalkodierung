@@ -1,13 +1,13 @@
 import java.util.*;
 
-public class AbstractEncodeChannel implements Channel {
+public class EncodeChannel implements Channel {
 
 	private BlockCode code;
 	private int[] inputBuffer;
 	private int inputPtr;
 	private List<Integer> buffer;
 
-	public AbstractEncodeChannel(BlockCode code) {
+	public EncodeChannel(BlockCode code) {
 		this.code = code;
 		this.buffer = new LinkedList<Integer>();
 		this.inputBuffer = new int[code.getL()];
