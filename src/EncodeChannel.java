@@ -1,28 +1,14 @@
-import java.util.*;
-
-public class EncodeChannel implements Channel {
+public class EncodeChannel extends AbstractBufferChannel {
 
 	private BlockCode code;
 	private int[] inputBuffer;
 	private int inputPtr;
-	private List<Integer> buffer;
 
 	public EncodeChannel(BlockCode code) {
+		super();
 		this.code = code;
-		this.buffer = new LinkedList<Integer>();
 		this.inputBuffer = new int[code.getL()];
 		this.inputPtr = 0;
-	}
-
-	@Override
-	public boolean hasOutput() {
-		return !buffer.isEmpty();
-	}
-
-	@Override
-	public int getOutput() {
-		int bit = buffer.remove(0);
-		return bit;
 	}
 
 	@Override
@@ -36,7 +22,7 @@ public class EncodeChannel implements Channel {
 			BinaryWord output = code.encode(input);
 
 			for (int i : output.toArray()) {
-				buffer.add(i);
+				super.buffer.add(i);
 			}
 		}
 	}

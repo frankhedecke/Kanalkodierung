@@ -1,29 +1,14 @@
-import java.util.LinkedList;
-import java.util.List;
-
-public class DecodeChannel implements Channel {
+public class DecodeChannel extends AbstractBufferChannel {
 
 	private BlockCode code;
 	private int[] inputBuffer;
 	private int inputPtr;
-	private List<Integer> buffer;
 
 	public DecodeChannel(BlockCode code) {
+		super();
 		this.code = code;
-		this.buffer = new LinkedList<Integer>();
 		this.inputBuffer = new int[code.getN()];
 		this.inputPtr = 0;
-	}
-
-	@Override
-	public boolean hasOutput() {
-		return !buffer.isEmpty();
-	}
-
-	@Override
-	public int getOutput() {
-		int bit = buffer.remove(0);
-		return bit;
 	}
 
 	@Override
@@ -37,7 +22,7 @@ public class DecodeChannel implements Channel {
 			BinaryWord output = code.decode(input);
 
 			for (int i : output.toArray()) {
-				buffer.add(i);
+				super.buffer.add(i);
 			}
 		}
 	}
