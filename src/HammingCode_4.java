@@ -3,7 +3,6 @@ public class HammingCode_4 implements BlockCode {
 	private BinaryMatrix generatorMatrix;
 	private BinaryMatrix controlMatrix;
 
-	// TODO control matrix
 	public HammingCode_4() {
 		this.generatorMatrix = new BinaryMatrix(7, 4);
 		this.controlMatrix = new BinaryMatrix(3, 7);
@@ -28,11 +27,7 @@ public class HammingCode_4 implements BlockCode {
 		int syndrome = s.toDecimal();
 
 		if (syndrome != 0) {
-			// System.out.println("H(7,4,3): s = " + s);
-			// System.out.println("H(7,4,3): syndrome = " + syndrome);
-			// System.out.print("H(7,4,3): correct from " + input);
 			input.toggleElement(syndrome);
-			// System.out.println(" to " + input);
 		}
 
 		BinaryWord out = new BinaryWord(4);
@@ -46,7 +41,19 @@ public class HammingCode_4 implements BlockCode {
 
 	@Override
 	public BinaryWord encode(BinaryWord input) {
+		// bit order : k1-k2-l1-k3-l2-l3-l4
 		return this.generatorMatrix.multiplyN(input);
+	}
+	
+	@Override
+	public BinaryWord getRedundancy(BinaryWord input) {
+		BinaryWord encoded = this.encode(input);
+
+		BinaryWord redundancy = new BinaryWord(3);
+		redundancy.setElement(1, encoded.getElement(1));
+		redundancy.setElement(2, encoded.getElement(2));
+		redundancy.setElement(3, encoded.getElement(4));
+		return redundancy;
 	}
 
 	@Override

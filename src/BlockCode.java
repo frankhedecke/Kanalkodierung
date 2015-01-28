@@ -3,6 +3,8 @@ public interface BlockCode {
 	public BinaryWord decode(BinaryWord input);
 
 	public BinaryWord encode(BinaryWord input);
+	
+	public BinaryWord getRedundancy(BinaryWord input);
 
 	public BinaryMatrix getGeneratorMatrix();
 
