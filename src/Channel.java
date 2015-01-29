@@ -1,9 +1,9 @@
-public interface Channel {
+public interface Channel<T> {
 
 	public boolean hasOutput();
 
-	public int getOutput();
+	public T getOutput();
 
-	public void pushInput(int bit);
+	public void pushInput(T bit);
 
 }

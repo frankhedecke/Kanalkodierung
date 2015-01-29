@@ -9,9 +9,9 @@ public class Main {
 		RandomSource random = new RandomSource(2, 1337l);
 		ErrorSource error = new ErrorSource(25, 1337l);
 
-		Channel encodeChannel = cat.getEncodeChannel();
-		Channel decodeChannel = cat.getDecodeChannel();
-		Channel noisyChannel = new NoisyChannel(error);
+		Channel<Integer> encodeChannel = cat.getEncodeChannel();
+		Channel<Integer> decodeChannel = cat.getDecodeChannel();
+		Channel<Integer> noisyChannel = new NoisyChannel(error);
 
 		System.out.print("input data :     ");
 		for (int i = 0; i < 16; i++) {

@@ -1,5 +1,5 @@
 
-public abstract class AbstractSource implements Channel {
+public abstract class AbstractSource implements Channel<Integer> {
 
 	@Override
 	public boolean hasOutput() {
@@ -7,7 +7,7 @@ public abstract class AbstractSource implements Channel {
 	}
 
 	@Override
-	public void pushInput(int bit) {
+	public void pushInput(Integer bit) {
 		System.err.println("A source doesn't accept input.");
 	}
 

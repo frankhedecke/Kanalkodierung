@@ -21,11 +21,11 @@ public class SerialConcatenation {
 		return this.parameterL;
 	}
 
-	public Channel getDecodeChannel() {
+	public Channel<Integer> getDecodeChannel() {
 		return new SerialCatDecodeChannel(this.outerCode, this.innerCode);
 	}
 
-	public Channel getEncodeChannel() {
+	public Channel<Integer> getEncodeChannel() {
 		return new SerialCatEncodeChannel(this.outerCode, this.innerCode);
 	}
 }

@@ -18,7 +18,7 @@ public class RandomSource extends AbstractSource {
 	}
 
 	@Override
-	public int getOutput() {
+	public Integer getOutput() {
 		return random.nextInt(this.modulo);
 	}
 }

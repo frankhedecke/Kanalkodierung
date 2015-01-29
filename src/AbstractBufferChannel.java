@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class AbstractBufferChannel implements Channel {
+public abstract class AbstractBufferChannel implements Channel<Integer> {
 
 	protected List<Integer> buffer;
 	
@@ -15,8 +15,8 @@ public abstract class AbstractBufferChannel implements Channel {
 	}
 
 	@Override
-	public int getOutput() {
-		int bit = buffer.remove(0);
+	public Integer getOutput() {
+		Integer bit = buffer.remove(0);
 		return bit;
 	}
 

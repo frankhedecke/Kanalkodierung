@@ -12,7 +12,7 @@ public class DecodeChannel extends AbstractBufferChannel {
 	}
 
 	@Override
-	public void pushInput(int bit) {
+	public void pushInput(Integer bit) {
 		this.inputBuffer[this.inputPtr] = bit;
 		this.inputPtr++;
 

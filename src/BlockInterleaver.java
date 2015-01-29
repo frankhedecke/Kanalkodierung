@@ -13,7 +13,7 @@ public class BlockInterleaver extends AbstractBufferChannel {
 	}
 
 	@Override
-	public void pushInput(int bit) {
+	public void pushInput(Integer bit) {
 		this.inputBuffer[this.ptrX][this.ptrY] = bit;
 		this.ptrY++;
 		if (this.ptrY >= this.depth) {

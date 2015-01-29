@@ -19,7 +19,7 @@ public class ErrorSource extends AbstractSource {
 	}
 
 	@Override
-	public int getOutput() {
+	public Integer getOutput() {
 		if (this.errorRate < 2) {
 			return this.errorRate;
 		}

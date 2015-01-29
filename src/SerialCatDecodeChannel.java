@@ -1,7 +1,7 @@
 public class SerialCatDecodeChannel extends AbstractBufferChannel {
 
-	private Channel outerDecodeChannel;
-	private Channel innerDecodeChannel;
+	private Channel<Integer> outerDecodeChannel;
+	private Channel<Integer> innerDecodeChannel;
 
 	public SerialCatDecodeChannel(BlockCode outerCode, BlockCode innerCode) {
 		super();
@@ -10,7 +10,7 @@ public class SerialCatDecodeChannel extends AbstractBufferChannel {
 	}
 
 	@Override
-	public void pushInput(int bit) {
+	public void pushInput(Integer bit) {
 		this.outerDecodeChannel.pushInput(bit);
 		while (this.outerDecodeChannel.hasOutput()) {
 			int out1 = this.outerDecodeChannel.getOutput();

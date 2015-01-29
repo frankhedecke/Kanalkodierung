@@ -17,7 +17,7 @@ public class ParallelCatEncodeChannel extends AbstractBufferChannel {
 	}
 
 	@Override
-	public void pushInput(int bit) {
+	public void pushInput(Integer bit) {
 		this.inputBuffer.add(bit);
 		this.interleaver.pushInput(bit);
 

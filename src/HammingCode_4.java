@@ -77,12 +77,12 @@ public class HammingCode_4 implements BlockCode {
 	}
 
 	@Override
-	public Channel getDecodeChannel() {
+	public Channel<Integer> getDecodeChannel() {
 		return new DecodeChannel(this);
 	}
 
 	@Override
-	public Channel getEncodeChannel() {
+	public Channel<Integer> getEncodeChannel() {
 		return new EncodeChannel(this);
 	}
 }

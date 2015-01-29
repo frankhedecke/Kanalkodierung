@@ -8,7 +8,7 @@ public class NoisyChannel extends AbstractBufferChannel {
 	}
 
 	@Override
-	public void pushInput(int bit) {
+	public void pushInput(Integer bit) {
 		int blub = errors.getOutput() + bit;
 		super.buffer.add(blub % 2);
 	}
