@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class ParallelCatEncodeChannel extends AbstractBufferChannel {
+public class ParallelCatEncodeChannel extends IntegerBufferChannel {
 
 	private BlockCode code;
 	private BlockInterleaver interleaver;

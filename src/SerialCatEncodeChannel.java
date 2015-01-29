@@ -1,4 +1,4 @@
-public class SerialCatEncodeChannel extends AbstractBufferChannel {
+public class SerialCatEncodeChannel extends IntegerBufferChannel {
 
 	private Channel<Integer> outerEncodeChannel;
 	private Channel<Integer> innerEncodeChannel;

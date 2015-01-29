@@ -1,4 +1,4 @@
-public class BlockInterleaver extends AbstractBufferChannel {
+public class BlockInterleaver extends IntegerBufferChannel {
 
 	private int[][] inputBuffer;
 	private int ptrX;

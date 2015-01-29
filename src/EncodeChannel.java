@@ -1,4 +1,4 @@
-public class EncodeChannel extends AbstractBufferChannel {
+public class EncodeChannel extends IntegerBufferChannel {
 
 	private BlockCode code;
 	private int[] inputBuffer;

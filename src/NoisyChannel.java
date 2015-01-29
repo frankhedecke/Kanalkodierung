@@ -1,4 +1,4 @@
-public class NoisyChannel extends AbstractBufferChannel {
+public class NoisyChannel extends IntegerBufferChannel {
 
 	ErrorSource errors;
 
