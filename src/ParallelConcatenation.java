@@ -19,6 +19,10 @@ public class ParallelConcatenation {
 		return this.parameterL;
 	}
 
+	public Channel<Integer> getDecodeChannel() {
+		return new ParallelCatDecodeChannel();
+	}
+	
 	public Channel<Integer> getEncodeChannel() {
 		return new ParallelCatEncodeChannel(code);
 	}

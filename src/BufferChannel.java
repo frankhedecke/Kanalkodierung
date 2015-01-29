@@ -1,22 +1,22 @@
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class BufferChannel<T> implements Channel<T> {
+public abstract class BufferChannel<I, O> {
 
-	protected List<T> buffer;
+	protected List<O> buffer;
 
 	public BufferChannel() {
-		this.buffer = new LinkedList<T>();
+		this.buffer = new LinkedList<O>();
 	}
 
-	@Override
 	public boolean hasOutput() {
 		return !buffer.isEmpty();
 	}
 
-	@Override
-	public T getOutput() {
-		T bit = buffer.remove(0);
+	public O getOutput() {
+		O bit = buffer.remove(0);
 		return bit;
 	}
+	
+	public abstract void pushInput(I bit);
 }
