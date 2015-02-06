@@ -20,7 +20,7 @@ public class ParallelConcatenation {
 	}
 
 	public Channel<Integer> getDecodeChannel() {
-		return new ParallelCatDecodeChannel();
+		return new ParallelCatDecodeChannel(this.code);
 	}
 	
 	public Channel<Integer> getEncodeChannel() {
