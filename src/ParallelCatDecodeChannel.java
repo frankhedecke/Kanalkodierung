@@ -46,12 +46,6 @@ public class ParallelCatDecodeChannel extends IntegerBufferChannel {
 	}
 
 	public void decode() {
-		if (code.getClass() != HammingCode_4.class) {
-			// TODO fix for other classes
-			System.err.println("\n" + this.getClass() + ".decode() works only with HammingCode_4");
-			return;
-		}
-
 		int paraN = this.code.getN();
 		int paraL = this.code.getL();
 		int paraK = this.code.getN() - this.code.getL();
@@ -69,8 +63,9 @@ public class ParallelCatDecodeChannel extends IntegerBufferChannel {
 		}
 
 		/*
-		 * For better understanding read: "Informations- und Kodierungstheorie" - pp. 254-259 by Schönfeld Dagmar; Klimant Herbert; Piotraschke Rudi Wiesbaden: Springer Vieweg (2012) ISBN
-		 * 978-3-8348-0647-5
+		 * For better understanding read: "Informations- und Kodierungstheorie" - pp. 254-259
+		 * by Schönfeld Dagmar; Klimant Herbert; Piotraschke Rudi Wiesbaden: Springer Vieweg (2012) 
+		 * ISBN 978-3-8348-0647-5
 		 */
 		for (int iter = 0; iter < this.iterations; iter++) {
 			// horizontal step
@@ -93,7 +88,9 @@ public class ParallelCatDecodeChannel extends IntegerBufferChannel {
 									float compVal = 0f;
 									if (u < paraL) {
 										// get compVal for l1 .. l_end
-										compVal = this.elements.get(row * paraL + u) + extrinsicsVer[row][u];
+										float exVerValue = extrinsicsVer[row][u];
+										float infoValue = this.elements.get(row * paraL + u);
+										compVal = infoValue + exVerValue;
 									} else {
 										// get compVal for k1 .. k_end
 										int offset = paraL * paraL + row * paraK;
@@ -132,17 +129,14 @@ public class ParallelCatDecodeChannel extends IntegerBufferChannel {
 								if ((u != colE) && (h_element != 0)) {
 									float compVal = 0f;
 									if (u < paraL) {
-										// TODO apply following lines for horizontal element too
 										// get compVal for l1 .. l_end
-										float exHValue = extrinsicsHor[u][col];
+										float exHorValue = extrinsicsHor[u][col];
 										float infoValue = this.elements.get(col + paraL * u);
-										compVal = infoValue + exHValue;
+										compVal = infoValue + exHorValue;
 									} else {
-										// TODO apply following lines for horizontal element too
 										// get compVal for k1 .. k_end
 										int offset = paraL * paraL + paraL * paraK + col * paraK;
-										float infoValue = this.elements.get(offset + (u - paraL));
-										compVal = infoValue;
+										compVal = this.elements.get(offset + (u - paraL));
 									}
 
 									if (compVal < 0) {
@@ -164,13 +158,11 @@ public class ParallelCatDecodeChannel extends IntegerBufferChannel {
 				float decodedValue = this.elements.remove(0);
 				decodedValue += extrinsicsHor[i][j];
 				decodedValue += extrinsicsVer[i][j];
-				System.out.println("= " + decodedValue);
 
 				int bit = this.demodulator.softToHard(decodedValue);
 				this.buffer.add(bit);
 			}
 		}
-
 	}
 
 	@Override
