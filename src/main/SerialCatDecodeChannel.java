@@ -1,3 +1,4 @@
+package main;
 public class SerialCatDecodeChannel extends IntegerBufferChannel {
 
 	private Channel<Integer> outerDecodeChannel;

@@ -1,3 +1,4 @@
+package main;
 public class NoisyChannel extends IntegerBufferChannel {
 
 	ErrorSource errors;

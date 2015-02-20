@@ -1,3 +1,4 @@
+package main;
 public class HammingCode_4 implements BlockCode {
 
 	private BinaryMatrix generatorMatrix;

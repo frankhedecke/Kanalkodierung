@@ -1,3 +1,4 @@
+package main;
 public class BlockInterleaver extends IntegerBufferChannel {
 
 	private int[][] inputBuffer;

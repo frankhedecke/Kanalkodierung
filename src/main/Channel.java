@@ -1,3 +1,4 @@
+package main;
 public interface Channel<T> {
 
 	public boolean hasOutput();

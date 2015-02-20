@@ -1,3 +1,4 @@
+package main;
 public interface BlockCode {
 
 	public BinaryWord decode(BinaryWord input);

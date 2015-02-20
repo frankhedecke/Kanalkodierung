@@ -1,3 +1,4 @@
+package main;
 public class Main {
 
 	// this is not the main program
