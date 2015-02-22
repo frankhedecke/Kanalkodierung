@@ -28,9 +28,7 @@ public class ParallelCatDecodeChannel extends IntegerBufferChannel {
 	private float getFactor(int element) {
 		int paraK = this.code.getN() - this.code.getL();
 		BinaryMatrix controlMatrix = this.code.getControlMatrix();
-		// Hamming bit order : k1-k2-l1-k3-l2-l3-l4
-		// Cat-Matrix bit order: l1-l2-l3-l4-k1-k2-k3
-		int[] positions = { 3, 5, 6, 7, 1, 2, 4 };
+		int[] positions = this.code.getBitOrder();
 
 		float factor = 0f;
 		int divisor = 0;
@@ -55,9 +53,7 @@ public class ParallelCatDecodeChannel extends IntegerBufferChannel {
 		int paraL = this.code.getL();
 		int paraK = this.code.getN() - this.code.getL();
 		BinaryMatrix controlMatrix = this.code.getControlMatrix();
-		// Hamming bit order : k1-k2-l1-k3-l2-l3-l4
-		// Cat-Matrix bit order: l1-l2-l3-l4-k1-k2-k3
-		int[] positions = { 3, 5, 6, 7, 1, 2, 4 };
+		int[] positions = this.code.getBitOrder();
 
 		float[][] extrinsicsHor = new float[paraL][paraL];
 		float[][] extrinsicsVer = new float[paraL][paraL];

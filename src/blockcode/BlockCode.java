@@ -12,6 +12,8 @@ public interface BlockCode {
 	
 	public BinaryWord getRedundancy(BinaryWord input);
 
+	public int[] getBitOrder();
+
 	public BinaryMatrix getGeneratorMatrix();
 
 	public BinaryMatrix getControlMatrix();

@@ -27,6 +27,15 @@ public class HammingCode_4 implements BlockCode {
 		this.controlMatrix.setRow(2, new BinaryWord("0110011"));
 		this.controlMatrix.setRow(3, new BinaryWord("0001111"));
 	}
+	
+	@Override
+	public int[] getBitOrder() {
+		// Hamming bit order : k1-k2-l1-k3-l2-l3-l4
+		// Cat-Matrix bit order: l1-l2-l3-l4-k1-k2-k3
+		
+		int[] positions = { 3, 5, 6, 7, 1, 2, 4 };
+		return positions;
+	}
 
 	@Override
 	public BinaryWord decode(BinaryWord input) {
