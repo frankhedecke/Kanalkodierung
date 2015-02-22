@@ -1,6 +1,10 @@
 package main;
 import java.util.*;
 
+import entity.BinaryWord;
+
+import blockcode.BlockCode;
+
 public class ParallelCatEncodeChannel extends IntegerBufferChannel {
 
 	private BlockCode code;

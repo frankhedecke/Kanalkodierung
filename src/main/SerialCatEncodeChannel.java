@@ -1,4 +1,7 @@
 package main;
+
+import blockcode.BlockCode;
+
 public class SerialCatEncodeChannel extends IntegerBufferChannel {
 
 	private Channel<Integer> outerEncodeChannel;

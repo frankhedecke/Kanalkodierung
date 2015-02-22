@@ -1,4 +1,9 @@
-package main;
+package blockcode;
+
+import entity.BinaryMatrix;
+import entity.BinaryWord;
+import main.Channel;
+
 public interface BlockCode {
 
 	public BinaryWord decode(BinaryWord input);

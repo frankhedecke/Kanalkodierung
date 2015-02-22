@@ -1,5 +1,7 @@
 package main;
 
+import blockcode.BlockCode;
+
 public class ParallelConcatenation {
 	
 	private BlockCode code;

@@ -1,4 +1,6 @@
-package main;
+package entity;
+
+
 public class BinaryMatrix {
 
 	private int[][] content;

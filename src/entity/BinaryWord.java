@@ -1,4 +1,4 @@
-package main;
+package entity;
 public class BinaryWord {
 
 	private int[] content;

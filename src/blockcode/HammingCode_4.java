@@ -1,4 +1,11 @@
-package main;
+package blockcode;
+
+import entity.BinaryMatrix;
+import entity.BinaryWord;
+import main.Channel;
+import main.DecodeChannel;
+import main.EncodeChannel;
+
 public class HammingCode_4 implements BlockCode {
 
 	private BinaryMatrix generatorMatrix;

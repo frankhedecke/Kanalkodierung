@@ -1,6 +1,10 @@
 package main;
 import java.util.*;
 
+import entity.BinaryMatrix;
+
+import blockcode.BlockCode;
+
 public class ParallelCatDecodeChannel extends IntegerBufferChannel {
 
 	private BlockCode code;

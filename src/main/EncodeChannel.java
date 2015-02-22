@@ -1,4 +1,8 @@
 package main;
+
+import entity.BinaryWord;
+import blockcode.BlockCode;
+
 public class EncodeChannel extends IntegerBufferChannel {
 
 	private BlockCode code;

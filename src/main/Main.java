@@ -1,4 +1,7 @@
 package main;
+
+import blockcode.HammingCode_4;
+
 public class Main {
 
 	// this is not the main program
