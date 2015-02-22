@@ -1,18 +1,13 @@
 package blockcode;
 
-import main.Channel;
-import main.DecodeChannel;
-import main.EncodeChannel;
 import entity.BinaryMatrix;
 import entity.BinaryWord;
 
-public class ParityCheckCode implements BlockCode {
+public class ParityCheckCode extends AbstractBlockCode {
 
 	private int paraL;
 	private int paraK;
 	private int paraN;
-	private BinaryMatrix generatorMatrix;
-	private BinaryMatrix controlMatrix;
 
 	public ParityCheckCode(int length) {
 		assert (length > 0);
@@ -44,7 +39,7 @@ public class ParityCheckCode implements BlockCode {
 
 		int[] positions = new int[this.paraN];
 		for (int i = 0; i < this.paraN; i++) {
-			positions[i] = i+1;
+			positions[i] = i + 1;
 		}
 		return positions;
 	}
@@ -92,16 +87,6 @@ public class ParityCheckCode implements BlockCode {
 	}
 
 	@Override
-	public BinaryMatrix getGeneratorMatrix() {
-		return this.generatorMatrix;
-	}
-
-	@Override
-	public BinaryMatrix getControlMatrix() {
-		return this.controlMatrix;
-	}
-
-	@Override
 	public int getN() {
 		return this.paraL + 1;
 	}
@@ -109,15 +94,5 @@ public class ParityCheckCode implements BlockCode {
 	@Override
 	public int getL() {
 		return this.paraL;
-	}
-
-	@Override
-	public Channel<Integer> getDecodeChannel() {
-		return new DecodeChannel(this);
-	}
-
-	@Override
-	public Channel<Integer> getEncodeChannel() {
-		return new EncodeChannel(this);
 	}
 }

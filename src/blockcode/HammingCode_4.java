@@ -2,14 +2,8 @@ package blockcode;
 
 import entity.BinaryMatrix;
 import entity.BinaryWord;
-import main.Channel;
-import main.DecodeChannel;
-import main.EncodeChannel;
 
-public class HammingCode_4 implements BlockCode {
-
-	private BinaryMatrix generatorMatrix;
-	private BinaryMatrix controlMatrix;
+public class HammingCode_4 extends AbstractBlockCode {
 
 	public HammingCode_4() {
 		this.generatorMatrix = new BinaryMatrix(7, 4);
@@ -74,16 +68,6 @@ public class HammingCode_4 implements BlockCode {
 	}
 
 	@Override
-	public BinaryMatrix getGeneratorMatrix() {
-		return this.generatorMatrix;
-	}
-
-	@Override
-	public BinaryMatrix getControlMatrix() {
-		return this.controlMatrix;
-	}
-
-	@Override
 	public int getN() {
 		return 7;
 	}
@@ -91,15 +75,5 @@ public class HammingCode_4 implements BlockCode {
 	@Override
 	public int getL() {
 		return 4;
-	}
-
-	@Override
-	public Channel<Integer> getDecodeChannel() {
-		return new DecodeChannel(this);
-	}
-
-	@Override
-	public Channel<Integer> getEncodeChannel() {
-		return new EncodeChannel(this);
 	}
 }
