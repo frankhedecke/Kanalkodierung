@@ -24,10 +24,10 @@ public class HammingCode_4a extends AbstractBlockCode {
 	
 	@Override
 	public int[] getBitOrder() {
-		// Hamming bit order : l4-l3-l2-k3-l1-k2-k1		TODO
+		// Hamming bit order :   l4-l3-l2-k3-l1-k2-k1
 		// Cat-Matrix bit order: l1-l2-l3-l4-k1-k2-k3
 
-		int[] positions = { 5, 3, 2, 1, 7, 6, 4 };	//	TODO
+		int[] positions = { 5, 3, 2, 1, 7, 6, 4 };
 		return positions;
 	}
 
@@ -52,7 +52,7 @@ public class HammingCode_4a extends AbstractBlockCode {
 
 	@Override
 	public BinaryWord encode(BinaryWord input) {
-		// bit order : k1-k2-l1-k3-l2-l3-l4
+		// bit order : l4-l3-l2-k3-l1-k2-k1
 		return this.generatorMatrix.multiplyN(input);
 	}
 	
