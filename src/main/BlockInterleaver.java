@@ -1,4 +1,7 @@
 package main;
+
+import channels.IntegerBufferChannel;
+
 public class BlockInterleaver extends IntegerBufferChannel {
 
 	private int[][] inputBuffer;

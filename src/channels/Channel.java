@@ -1,4 +1,4 @@
-package main;
+package channels;
 public interface Channel<T> {
 
 	public boolean hasOutput();

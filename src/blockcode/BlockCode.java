@@ -1,8 +1,8 @@
 package blockcode;
 
+import channels.Channel;
 import entity.BinaryMatrix;
 import entity.BinaryWord;
-import main.Channel;
 
 public interface BlockCode {
 

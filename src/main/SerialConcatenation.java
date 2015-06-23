@@ -1,5 +1,8 @@
 package main;
 
+import channels.Channel;
+import channels.SerialCatDecodeChannel;
+import channels.SerialCatEncodeChannel;
 import blockcode.BlockCode;
 
 public class SerialConcatenation {

@@ -1,4 +1,4 @@
-package main;
+package channels;
 import java.util.LinkedList;
 import java.util.List;
 

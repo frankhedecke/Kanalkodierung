@@ -1,8 +1,8 @@
 package blockcode;
 
-import main.Channel;
-import main.DecodeChannel;
-import main.EncodeChannel;
+import channels.Channel;
+import channels.DecodeChannel;
+import channels.EncodeChannel;
 import entity.BinaryMatrix;
 
 public abstract class AbstractBlockCode implements BlockCode{

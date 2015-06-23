@@ -1,18 +1,18 @@
-package main;
+package channels;
 
 import entity.BinaryWord;
 import blockcode.BlockCode;
 
-public class DecodeChannel extends IntegerBufferChannel {
+public class EncodeChannel extends IntegerBufferChannel {
 
 	private BlockCode code;
 	private int[] inputBuffer;
 	private int inputPtr;
 
-	public DecodeChannel(BlockCode code) {
+	public EncodeChannel(BlockCode code) {
 		super();
 		this.code = code;
-		this.inputBuffer = new int[code.getN()];
+		this.inputBuffer = new int[code.getL()];
 		this.inputPtr = 0;
 	}
 
@@ -24,7 +24,7 @@ public class DecodeChannel extends IntegerBufferChannel {
 		if (this.inputPtr == this.inputBuffer.length) {
 			this.inputPtr = 0;
 			BinaryWord input = new BinaryWord(inputBuffer);
-			BinaryWord output = code.decode(input);
+			BinaryWord output = code.encode(input);
 
 			for (int i : output.toArray()) {
 				super.buffer.add(i);

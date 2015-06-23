@@ -1,5 +1,8 @@
-package main;
+package channels;
 import java.util.*;
+
+import main.BlockInterleaver;
+
 
 import entity.BinaryWord;
 

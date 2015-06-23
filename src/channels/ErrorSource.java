@@ -1,4 +1,4 @@
-package main;
+package channels;
 import java.util.Random;
 
 public class ErrorSource extends AbstractSource {

@@ -1,5 +1,8 @@
-package main;
+package channels;
 import java.util.*;
+
+import main.Modulator;
+
 
 import entity.BinaryMatrix;
 

@@ -1,4 +1,5 @@
-package main;
+package channels;
+
 
 public abstract class AbstractSource implements Channel<Integer> {
 

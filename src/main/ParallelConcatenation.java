@@ -1,5 +1,8 @@
 package main;
 
+import channels.Channel;
+import channels.ParallelCatDecodeChannel;
+import channels.ParallelCatEncodeChannel;
 import blockcode.BlockCode;
 
 public class ParallelConcatenation {

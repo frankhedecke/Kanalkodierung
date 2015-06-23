@@ -1,5 +1,9 @@
 package main;
 
+import channels.Channel;
+import channels.ErrorSource;
+import channels.NoisyChannel;
+import channels.RandomSource;
 import blockcode.HammingCode_4;
 
 public class Main {
