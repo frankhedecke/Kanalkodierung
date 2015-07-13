@@ -2,7 +2,7 @@ package main;
 
 public class Modulator {
 	
-	public float hardToSoft(int input) {
+	public static float hardToSoft(int input) {
 		if (input == 0) {
 			return 1.0f;
 		} else if (input == 1) {
@@ -13,7 +13,7 @@ public class Modulator {
 		}
 	}
 	
-	public int softToHard(float input) {
+	public static int softToHard(float input) {
 		if (input > 0f) {
 			return 0;
 		} else if (input < 0f) {

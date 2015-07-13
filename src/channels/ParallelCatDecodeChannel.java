@@ -1,31 +1,22 @@
 package channels;
+
 import java.util.*;
-
-import main.Modulator;
-
-
-import entity.BinaryMatrix;
-
 import blockcode.BlockCode;
+import entity.BinaryMatrix;
+import main.Modulator;
 
 public class ParallelCatDecodeChannel extends IntegerBufferChannel {
 
 	private BlockCode code;
-	private Modulator demodulator;
 	private List<Float> elements;
 	private int counter;
 	private int iterations;
 
 	public ParallelCatDecodeChannel(BlockCode code) {
 		this.code = code;
-		this.demodulator = new Modulator();
 		this.elements = new LinkedList<Float>();
 		this.counter = 0;
 		this.iterations = 4;
-	}
-
-	public Modulator getDemodulator() {
-		return this.demodulator;
 	}
 	
 	private float getFactor(int element) {
@@ -163,7 +154,7 @@ public class ParallelCatDecodeChannel extends IntegerBufferChannel {
 				decodedValue += extrinsicsHor[i][j];
 				decodedValue += extrinsicsVer[i][j];
 
-				int bit = this.demodulator.softToHard(decodedValue);
+				int bit = Modulator.softToHard(decodedValue);
 				this.buffer.add(bit);
 			}
 		}
@@ -176,7 +167,7 @@ public class ParallelCatDecodeChannel extends IntegerBufferChannel {
 		int frameSize = (int) (Math.pow(paraN, 2) - Math.pow(paraK, 2));
 
 		this.counter++;
-		this.elements.add(this.demodulator.hardToSoft(bit));
+		this.elements.add(Modulator.hardToSoft(bit));
 		if (this.counter == frameSize) {
 			this.counter = 0;
 			decode();
