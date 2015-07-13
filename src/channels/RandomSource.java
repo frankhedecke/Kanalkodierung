@@ -1,7 +1,7 @@
 package channels;
 import java.util.Random;
 
-public class RandomSource extends AbstractSource {
+public class RandomSource extends AbstractSource<Integer> {
 	
 	Random random;
 	int modulo;
