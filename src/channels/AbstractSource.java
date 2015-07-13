@@ -1,7 +1,6 @@
 package channels;
 
-
-public abstract class AbstractSource implements Channel<Integer> {
+public abstract class AbstractSource<T> implements Channel<T> {
 
 	@Override
 	public boolean hasOutput() {
@@ -9,8 +8,9 @@ public abstract class AbstractSource implements Channel<Integer> {
 	}
 
 	@Override
-	public void pushInput(Integer bit) {
+	public void pushInput(T bit) {
 		System.err.println("A source doesn't accept input.");
 	}
-
+	
+	public abstract T getOutput();
 }

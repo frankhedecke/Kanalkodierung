@@ -1,7 +1,7 @@
 package channels;
 import java.util.Random;
 
-public class ErrorSource extends AbstractSource {
+public class ErrorSource extends AbstractSource<Integer> {
 
 	private int errorRate;
 	private Random random;
@@ -18,7 +18,7 @@ public class ErrorSource extends AbstractSource {
 
 		this.random = new Random(seed);
 	}
-
+	
 	@Override
 	public Integer getOutput() {
 		if (this.errorRate < 2) {
@@ -27,5 +27,4 @@ public class ErrorSource extends AbstractSource {
 
 		return random.nextInt(errorRate) == 1 ? 1 : 0;
 	}
-
 }
