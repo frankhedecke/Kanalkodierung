@@ -1,18 +1,17 @@
 package channels;
 
-
 public class NoisyChannel extends IntegerBufferChannel {
 
-	ErrorSource errors;
+	ErrorSource errorSource;
 
-	public NoisyChannel(ErrorSource errors) {
+	public NoisyChannel(ErrorSource errorSource) {
 		super();
-		this.errors = errors;
+		this.errorSource = errorSource;
 	}
 
 	@Override
 	public void pushInput(Integer bit) {
-		int blub = errors.getOutput() + bit;
-		super.buffer.add(blub % 2);
+		int value = bit + this.errorSource.getOutput();
+		super.buffer.add(value % 2);
 	}
 }
