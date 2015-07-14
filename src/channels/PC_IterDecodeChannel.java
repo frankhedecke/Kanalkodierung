@@ -2,10 +2,8 @@ package channels;
 
 import java.util.LinkedList;
 import java.util.List;
-
-import entity.BinaryMatrix;
-
 import blockcode.BlockCode;
+import entity.BinaryMatrix;
 
 public class PC_IterDecodeChannel extends FloatBufferChannel {
 	
@@ -13,6 +11,7 @@ public class PC_IterDecodeChannel extends FloatBufferChannel {
 	private List<Float> elements;
 	private int counter;
 	private int iterations;
+	private int frameSize;
 
 	public PC_IterDecodeChannel(BlockCode code) {
 		super();
@@ -20,6 +19,10 @@ public class PC_IterDecodeChannel extends FloatBufferChannel {
 		this.elements = new LinkedList<Float>();
 		this.counter = 0;
 		this.iterations = 4;
+		// calculating frame size
+		int paraN = code.getN();
+		int paraK = code.getN() - code.getL();
+		this.frameSize = (int) (Math.pow(paraN, 2) - Math.pow(paraK, 2));
 	}
 	
 	private float getFactor(int element) {
@@ -163,13 +166,9 @@ public class PC_IterDecodeChannel extends FloatBufferChannel {
 
 	@Override
 	public void pushInput(Float bit) {
-		int paraN = code.getN();
-		int paraK = code.getN() - code.getL();
-		int frameSize = (int) (Math.pow(paraN, 2) - Math.pow(paraK, 2));
-
 		this.counter++;
 		this.elements.add(bit);
-		if (this.counter == frameSize) {
+		if (this.counter == this.frameSize) {
 			decode();
 		}
 	}
