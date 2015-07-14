@@ -1,4 +1,5 @@
 package Tests;
+
 import channels.Channel;
 import channels.PC_HardIterDecodeChannel;
 import channels.RandomSource;
@@ -15,7 +16,7 @@ public class TestPCHammingCode {
 		
 		Channel<Integer> src = new RandomSource(2, 14337l);
 		Channel<Integer> encoder = pcat.getEncodeChannel();
-		PC_HardIterDecodeChannel decoder = (PC_HardIterDecodeChannel) pcat.getDecodeChannel();
+		PC_HardIterDecodeChannel decoder = (PC_HardIterDecodeChannel) pcat.getHardDecodeChannel();
 
 		System.out.print("  input = ");
 		for (int i = 0; i < 16; i++) {
