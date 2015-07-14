@@ -169,7 +169,6 @@ public class PC_HardIterDecodeChannel extends IntegerBufferChannel {
 		this.counter++;
 		this.elements.add(Modulator.hardToSoft(bit));
 		if (this.counter == frameSize) {
-			this.counter = 0;
 			decode();
 		}
 	}
