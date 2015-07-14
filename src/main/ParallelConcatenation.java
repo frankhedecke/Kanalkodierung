@@ -1,8 +1,8 @@
 package main;
 
 import channels.Channel;
-import channels.ParallelCatDecodeChannel;
-import channels.ParallelCatEncodeChannel;
+import channels.PC_HardIterDecodeChannel;
+import channels.PC_EncodeChannel;
 import blockcode.BlockCode;
 
 public class ParallelConcatenation {
@@ -26,11 +26,11 @@ public class ParallelConcatenation {
 	}
 
 	public Channel<Integer> getDecodeChannel() {
-		return new ParallelCatDecodeChannel(this.code);
+		return new PC_HardIterDecodeChannel(this.code);
 	}
 	
 	public Channel<Integer> getEncodeChannel() {
-		return new ParallelCatEncodeChannel(code);
+		return new PC_EncodeChannel(code);
 	}
 
 }

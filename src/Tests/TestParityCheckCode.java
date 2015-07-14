@@ -1,6 +1,6 @@
 package Tests;
 
-import channels.ParallelCatDecodeChannel;
+import channels.PC_HardIterDecodeChannel;
 import entity.BinaryWord;
 import blockcode.BlockCode;
 import blockcode.ParityCheckCode;
@@ -16,7 +16,7 @@ public class TestParityCheckCode {
 		System.out.println( code.encode(new BinaryWord("10")) );
 		System.out.println( code.encode(new BinaryWord("11")) );
 		
-		ParallelCatDecodeChannel channel = new ParallelCatDecodeChannel(code);
+		PC_HardIterDecodeChannel channel = new PC_HardIterDecodeChannel(code);
 		
 		channel.pushTestInput(0.9f);
 		channel.pushTestInput(1.0f);

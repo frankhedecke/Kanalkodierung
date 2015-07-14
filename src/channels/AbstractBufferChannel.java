@@ -20,5 +20,4 @@ public abstract class AbstractBufferChannel<T> implements Channel<T> {
 		T bit = buffer.remove(0);
 		return bit;
 	}
-
 }

@@ -5,14 +5,14 @@ import blockcode.BlockCode;
 import entity.BinaryMatrix;
 import main.Modulator;
 
-public class ParallelCatDecodeChannel extends IntegerBufferChannel {
+public class PC_HardIterDecodeChannel extends IntegerBufferChannel {
 
 	private BlockCode code;
 	private List<Float> elements;
 	private int counter;
 	private int iterations;
 
-	public ParallelCatDecodeChannel(BlockCode code) {
+	public PC_HardIterDecodeChannel(BlockCode code) {
 		this.code = code;
 		this.elements = new LinkedList<Float>();
 		this.counter = 0;

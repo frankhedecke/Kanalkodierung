@@ -1,8 +1,8 @@
 package main;
 
 import channels.Channel;
-import channels.SerialCatDecodeChannel;
-import channels.SerialCatEncodeChannel;
+import channels.SC_DecodeChannel;
+import channels.SC_EncodeChannel;
 import blockcode.BlockCode;
 
 public class SerialConcatenation {
@@ -29,10 +29,10 @@ public class SerialConcatenation {
 	}
 
 	public Channel<Integer> getDecodeChannel() {
-		return new SerialCatDecodeChannel(this.outerCode, this.innerCode);
+		return new SC_DecodeChannel(this.outerCode, this.innerCode);
 	}
 
 	public Channel<Integer> getEncodeChannel() {
-		return new SerialCatEncodeChannel(this.outerCode, this.innerCode);
+		return new SC_EncodeChannel(this.outerCode, this.innerCode);
 	}
 }

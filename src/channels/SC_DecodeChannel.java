@@ -2,12 +2,12 @@ package channels;
 
 import blockcode.BlockCode;
 
-public class SerialCatDecodeChannel extends IntegerBufferChannel {
+public class SC_DecodeChannel extends IntegerBufferChannel {
 
 	private Channel<Integer> outerDecodeChannel;
 	private Channel<Integer> innerDecodeChannel;
 
-	public SerialCatDecodeChannel(BlockCode outerCode, BlockCode innerCode) {
+	public SC_DecodeChannel(BlockCode outerCode, BlockCode innerCode) {
 		super();
 		this.outerDecodeChannel = outerCode.getDecodeChannel();
 		this.innerDecodeChannel = innerCode.getDecodeChannel();
@@ -25,5 +25,4 @@ public class SerialCatDecodeChannel extends IntegerBufferChannel {
 			this.buffer.add(out2);
 		}
 	}
-
 }

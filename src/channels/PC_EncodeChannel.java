@@ -8,7 +8,7 @@ import entity.BinaryWord;
 
 import blockcode.BlockCode;
 
-public class ParallelCatEncodeChannel extends IntegerBufferChannel {
+public class PC_EncodeChannel extends IntegerBufferChannel {
 
 	private BlockCode code;
 	private BlockInterleaver interleaver;
@@ -16,7 +16,7 @@ public class ParallelCatEncodeChannel extends IntegerBufferChannel {
 	private List<Integer> redundancyBufferH;
 	private List<Integer> redundancyBufferV;
 
-	public ParallelCatEncodeChannel(BlockCode code) {
+	public PC_EncodeChannel(BlockCode code) {
 		this.code = code;
 		this.interleaver = new BlockInterleaver(code.getL());
 		this.inputBuffer = new LinkedList<Integer>();
