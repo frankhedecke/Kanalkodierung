@@ -20,13 +20,16 @@ public class TestPCHammingCodeAWGN {
 		Channel<Integer> encoder = pcat.getEncodeChannel();
 		Channel<Float> decoder = pcat.getSoftDecodeChannel();
 
-		float codeRate = 0.5f;
+		float codeRate = (float) pcat.getL() / pcat.getN();
 		float snr_dB = 4.0f;
 
 		ErrorSourceAWGN errorSource = new ErrorSourceAWGN(codeRate, snr_dB, 1337);
 		Channel<Float> noisyChannel = new NoisyChannelAWGN(errorSource);
 
+		System.out.println("Verkettung L=" + pcat.getL());
+		System.out.println("Verkettung N=" + pcat.getN());
 		System.out.println("RauschVarianz = " + errorSource.getVariance());
+		System.out.println("CodeRate = " + codeRate);
 
 		System.out.print("  input = ");
 		for (int i = 0; i < 16; i++) {
