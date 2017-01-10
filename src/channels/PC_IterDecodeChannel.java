@@ -6,9 +6,10 @@ import blockcode.BlockCode;
 import entity.BinaryMatrix;
 
 public class PC_IterDecodeChannel extends FloatBufferChannel {
-	
+// change class name to to PC_Decoder_HardIter
+
 	private BlockCode code;
-	private List<Float> elements;
+	private List<Float> inputBuffer;
 	private int counter;
 	private int iterations;
 	private int frameSize;
@@ -16,7 +17,7 @@ public class PC_IterDecodeChannel extends FloatBufferChannel {
 	public PC_IterDecodeChannel(BlockCode code) {
 		super();
 		this.code = code;
-		this.elements = new LinkedList<Float>();
+		this.inputBuffer = new LinkedList<Float>();
 		this.counter = 0;
 		this.iterations = 4;
 		// calculating frame size
@@ -90,12 +91,12 @@ public class PC_IterDecodeChannel extends FloatBufferChannel {
 									if (u < paraL) {
 										// get compVal for l1 .. l_end
 										float exVerValue = extrinsicsVer[row][u];
-										float infoValue = this.elements.get(row * paraL + u);
+										float infoValue = this.inputBuffer.get(row * paraL + u);
 										compVal = infoValue + exVerValue;
 									} else {
 										// get compVal for k1 .. k_end
 										int offset = paraL * paraL + row * paraK;
-										compVal = this.elements.get(offset + (u - paraL));
+										compVal = this.inputBuffer.get(offset + (u - paraL));
 									}
 
 									if (compVal < 0) {
@@ -132,12 +133,12 @@ public class PC_IterDecodeChannel extends FloatBufferChannel {
 									if (u < paraL) {
 										// get compVal for l1 .. l_end
 										float exHorValue = extrinsicsHor[u][col];
-										float infoValue = this.elements.get(col + paraL * u);
+										float infoValue = this.inputBuffer.get(col + paraL * u);
 										compVal = infoValue + exHorValue;
 									} else {
 										// get compVal for k1 .. k_end
 										int offset = paraL * paraL + paraL * paraK + col * paraK;
-										compVal = this.elements.get(offset + (u - paraL));
+										compVal = this.inputBuffer.get(offset + (u - paraL));
 									}
 
 									if (compVal < 0) {
@@ -156,20 +157,24 @@ public class PC_IterDecodeChannel extends FloatBufferChannel {
 
 		for (int i = 0; i < paraL; i++) {
 			for (int j = 0; j < paraL; j++) {
-				float decodedValue = this.elements.remove(0);
+				float decodedValue = this.inputBuffer.remove(0);
 				decodedValue += extrinsicsHor[i][j];
 				decodedValue += extrinsicsVer[i][j];
 				this.buffer.add(decodedValue);
 			}
 		}
+
+		// clear redundant values from the input buffer
+		this.inputBuffer.clear();
 	}
 
 	@Override
 	public void pushInput(Float bit) {
 		this.counter++;
-		this.elements.add(bit);
+		this.inputBuffer.add(bit);
 		if (this.counter == this.frameSize) {
 			decode();
+			this.counter = 0;
 		}
 	}
 }

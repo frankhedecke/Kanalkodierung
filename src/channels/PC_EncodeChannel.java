@@ -19,6 +19,7 @@ public class PC_EncodeChannel extends IntegerBufferChannel {
 	public PC_EncodeChannel(BlockCode code) {
 		this.code = code;
 		this.interleaver = new BlockInterleaver(code.getL());
+		// all buffers should be arrays, they are fixed in size
 		this.inputBuffer = new LinkedList<Integer>();
 		this.redundancyBufferH = new LinkedList<Integer>();
 		this.redundancyBufferV = new LinkedList<Integer>();
@@ -26,11 +27,14 @@ public class PC_EncodeChannel extends IntegerBufferChannel {
 
 	@Override
 	public void pushInput(Integer bit) {
+		// input is copied in own buffer and in interleaver buffer
 		this.inputBuffer.add(bit);
 		this.interleaver.pushInput(bit);
 
-		// fill the redundancy buffers
+		// TODO remove fixed size 4
+		// if interleaver is full - fill the redundancy buffers
 		while (this.interleaver.hasOutput()) {
+			// if interleaver has ouput the while loop runs L times
 			int[] x_H = new int[4];
 			int[] x_V = new int[4];
 			for (int i = 0; i < 4; i++) {
@@ -49,6 +53,7 @@ public class PC_EncodeChannel extends IntegerBufferChannel {
 		}
 		
 		// process the redundancy buffers
+		// TODO why == 12? code.getL * code.getK
 		if (this.redundancyBufferH.size() == 12) {
 			while(! this.redundancyBufferH.isEmpty()) {
 				this.buffer.add(this.redundancyBufferH.remove(0));
