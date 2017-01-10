@@ -18,7 +18,11 @@ public class Modulator {
 			return 0;
 		} else if (input < 0f) {
 			return 1;
+		} else if (input == 0f) {
+			// if bit is unclear it will be set to 1
+			return 1;
 		} else {
+			System.err.println("Soft to hard modulation fails somehow.");
 			return -1;
 		}
 	}
