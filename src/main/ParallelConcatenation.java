@@ -27,6 +27,10 @@ public class ParallelConcatenation {
 		return this.parameterL;
 	}
 
+	public float getCodeRate() {
+		return (float)this.parameterL / this.parameterN;
+	}
+
 	public Channel<Integer> getHardDecodeChannel() {
 		return new PC_HardIterDecodeChannel(this.code);
 	}
