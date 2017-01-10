@@ -2,6 +2,7 @@ package main;
 
 import blockcode.BlockCode;
 import channels.Channel;
+import channels.PC_DecodeChannelNoECC;
 import channels.PC_HardIterDecodeChannel;
 import channels.PC_IterDecodeChannel;
 import channels.PC_EncodeChannel;
@@ -30,6 +31,10 @@ public class ParallelConcatenation {
 		return new PC_HardIterDecodeChannel(this.code);
 	}
 	
+	public Channel<Integer> getDecodeChannelNoECC() {
+		return new PC_DecodeChannelNoECC(this.code);
+	}
+
 	public Channel<Float> getSoftDecodeChannel() {
 		return new PC_IterDecodeChannel(this.code);
 	}

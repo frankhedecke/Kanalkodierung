@@ -1,7 +1,6 @@
 package Tests;
 
 import channels.Channel;
-import channels.PC_HardIterDecodeChannel;
 import channels.RandomSource;
 import blockcode.*;
 import main.*;
@@ -15,29 +14,38 @@ public class TestPCHammingCode {
 		ParallelConcatenation pcat = new ParallelConcatenation(code);
 		
 		Channel<Integer> src = new RandomSource(2, 14337l);
+
 		Channel<Integer> encoder = pcat.getEncodeChannel();
-		PC_HardIterDecodeChannel decoder = (PC_HardIterDecodeChannel) pcat.getHardDecodeChannel();
-
-		System.out.print("  input = ");
-		for (int i = 0; i < 16; i++) {
-			int bit = src.getOutput();
-			System.out.print(bit + " ");
-			encoder.pushInput(bit);
-		}
+		Channel<Integer> decoder = pcat.getDecodeChannelNoECC();
 		
+		// write introduction
+		System.out.println("parallel concatenation of a (7,4,3) Hamming Code");
+		System.out.println("no errors in the noisy channel");
 		System.out.println();
-		while(encoder.hasOutput()) {
-			int bit = encoder.getOutput();
-			System.out.print(bit + " ");
-			decoder.pushInput(bit);
-		}
 
-		System.out.print("\n output = ");
-		while(decoder.hasOutput()) {
-			int bit = decoder.getOutput();
-			System.out.print(bit + " ");
+		for (int repeat = 0; repeat < 10 ; ++repeat) {
+			System.out.print("  input = ");
+			for (int i = 0; i < 16; i++) {
+				int bit = src.getOutput();
+				System.out.print(bit + " ");
+				encoder.pushInput(bit);
+			}
+
+			System.out.print("\nChannel = ");
+			while(encoder.hasOutput()) {
+				int bit = encoder.getOutput();
+				System.out.print(bit + " ");
+				decoder.pushInput(bit);
+			}
+
+			System.out.print("\n output = ");
+			while(decoder.hasOutput()) {
+				int bit = decoder.getOutput();
+				System.out.print(bit + " ");
+			}
+
+			System.out.println();
+			System.out.println();
 		}
-		
-		System.out.println();
 	}
 }
