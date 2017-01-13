@@ -8,7 +8,7 @@ import channels.ErrorSourceAWGN;
 import channels.NoisyChannelAWGN;
 import channels.RandomSource;
 
-public class Experiment {
+public class Experiment_PCat_Iter {
 
 	public static void main(String[] args) {
 
