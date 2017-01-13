@@ -22,13 +22,15 @@ public class Experiment_PCat_Iter {
 		float snr_start =  1.0f;
 		float snr_end   = 10.0f;
 		float snr_step  =  0.1f;
-		int repetitions =  10000;
+		int cycles =  10000;
 
 		System.out.println("parallel concatenation of a (7,4,3) Hamming Code");
 		System.out.println("-> code rate = " + pcat.getCodeRate());
 		System.out.print("noisy channel with SNR from " + snr_start + " dB to ");
 		System.out.println( snr_end + " dB in " + snr_step + " dB steps");
 		System.out.println();
+
+		System.out.println("TIME: " + System.nanoTime());
 
 		for (float snr = snr_start; snr <= snr_end + 0.01; snr += snr_step) {
 			System.out.format("SNR = %4.1f -- ", snr);
@@ -42,7 +44,14 @@ public class Experiment_PCat_Iter {
 			int error_count = 0;
 			int success_count = 0;
 			
-			for (int cycle = 0; cycle < repetitions ; ++cycle) {
+			// modify cycles
+			if (snr > 6.0) {
+				cycles =  50000;
+			} else if (snr > 7.0) {
+				cycles = 100000;
+			}
+
+			for (int cycle = 0; cycle < cycles ; ++cycle) {
 
 				// TODO remove 16
 				// generating inputs
@@ -77,8 +86,9 @@ public class Experiment_PCat_Iter {
 					error_count++;
 				}
 			}
-			System.out.format("ok: %5d and fails : %5d", success_count, error_count);
+			System.out.format("ok -- %5d --  and fails -- %5d -- cycles -- %8d", success_count, error_count, cycles);
 			System.out.println();
+			System.out.println("TIME: " + System.nanoTime());
 		}
 	}
 }
