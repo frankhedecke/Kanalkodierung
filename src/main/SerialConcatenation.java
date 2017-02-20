@@ -12,6 +12,10 @@ public class SerialConcatenation {
 	private int parameterL;
 	private int parameterN;
 
+	public float getCodeRate() {
+		return (float)this.parameterL / this.parameterN;
+	}
+
 	public SerialConcatenation(BlockCode outerCode, BlockCode innerCode) {
 		this.outerCode = outerCode;
 		this.innerCode = innerCode;
