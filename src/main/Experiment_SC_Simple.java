@@ -32,7 +32,7 @@ public class Experiment_SC_Simple {
 		System.out.println("conservative hard decision decoding");
 		System.out.println();
 
-		System.out.println("TIME: " + System.nanoTime());
+		//System.out.println("TIME: " + System.nanoTime());
 		for (float snr = snr_start; snr <= snr_end + 0.01; snr += snr_step) {
 			System.out.format("SNR = %4.1f -- ", snr);
 
@@ -85,9 +85,10 @@ public class Experiment_SC_Simple {
 				}
 			}
 
-			System.out.format("ok -- %5d --  and fails -- %5d -- cycles -- %8d", success_count, error_count, cycles);
+			// System.out.print("TIME: " + System.nanoTime() + " --");
+			System.out.format(" ok -- %5d --  and fails -- %5d -- cycles -- %8d", success_count, error_count, cycles);
+			System.out.format(" -- WER -- %.4f", 1.0f * error_count / cycles);
 			System.out.println();
-			System.out.println("TIME: " + System.nanoTime());
 		}
 	}
 
