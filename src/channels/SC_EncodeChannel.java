@@ -16,6 +16,7 @@ public class SC_EncodeChannel extends IntegerBufferChannel {
 	@Override
 	public void pushInput(Integer bit) {
 		this.outerEncodeChannel.pushInput(bit);
+
 		while (this.outerEncodeChannel.hasOutput()) {
 			int out1 = this.outerEncodeChannel.getOutput();
 			this.innerEncodeChannel.pushInput(out1);

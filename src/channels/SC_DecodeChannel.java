@@ -15,13 +15,14 @@ public class SC_DecodeChannel extends IntegerBufferChannel {
 
 	@Override
 	public void pushInput(Integer bit) {
-		this.outerDecodeChannel.pushInput(bit);
-		while (this.outerDecodeChannel.hasOutput()) {
-			int out1 = this.outerDecodeChannel.getOutput();
-			this.innerDecodeChannel.pushInput(out1);
-		}
+		this.innerDecodeChannel.pushInput(bit);
+
 		while (this.innerDecodeChannel.hasOutput()) {
-			int out2 = this.innerDecodeChannel.getOutput();
+			int out1 = this.innerDecodeChannel.getOutput();
+			this.outerDecodeChannel.pushInput(out1);
+		}
+		while (this.outerDecodeChannel.hasOutput()) {
+			int out2 = this.outerDecodeChannel.getOutput();
 			this.buffer.add(out2);
 		}
 	}

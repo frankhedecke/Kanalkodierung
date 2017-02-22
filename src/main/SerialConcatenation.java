@@ -32,11 +32,11 @@ public class SerialConcatenation {
 		return this.parameterL;
 	}
 
-	public Channel<Integer> getDecodeChannel() {
+	public Channel<Integer> createDecodeChannel() {
 		return new SC_DecodeChannel(this.outerCode, this.innerCode);
 	}
 
-	public Channel<Integer> getEncodeChannel() {
+	public Channel<Integer> createEncodeChannel() {
 		return new SC_EncodeChannel(this.outerCode, this.innerCode);
 	}
 }
