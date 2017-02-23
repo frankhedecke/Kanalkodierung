@@ -17,8 +17,8 @@ public class Main {
 		RandomSource random = new RandomSource(2, 1337l);
 		ErrorSource error = new ErrorSource(25, 1337l);
 
-		Channel<Integer> encodeChannel = cat.getEncodeChannel();
-		Channel<Integer> decodeChannel = cat.getDecodeChannel();
+		Channel<Integer> encodeChannel = cat.createEncodeChannel();
+		Channel<Integer> decodeChannel = cat.createDecodeChannel();
 		Channel<Integer> noisyChannel = new NoisyChannel(error);
 
 		System.out.print("input data :     ");
