@@ -18,7 +18,7 @@ public class PC_EncodeChannel extends IntegerBufferChannel {
 
 	public PC_EncodeChannel(BlockCode code) {
 		this.code = code;
-		this.interleaver = new BlockInterleaver(code.getL());
+		this.interleaver = new BlockInterleaver(code.getL(), code.getL());
 		// all buffers should be arrays, they are fixed in size
 		this.inputBuffer = new LinkedList<Integer>();
 		this.redundancyBufferH = new LinkedList<Integer>();

@@ -8,10 +8,12 @@ public class BlockInterleaver extends IntegerBufferChannel {
 	private int ptrX;
 	private int ptrY;
 	private int depth;
+	private int length;
 
-	public BlockInterleaver(int depth) {
-		this.inputBuffer = new int[depth][depth];
+	public BlockInterleaver(int depth, int length) {
+		this.inputBuffer = new int[depth][length];
 		this.depth = depth;
+		this.length = length;
 		this.ptrX = 0;
 		this.ptrY = 0;
 	}
@@ -20,7 +22,7 @@ public class BlockInterleaver extends IntegerBufferChannel {
 	public void pushInput(Integer bit) {
 		this.inputBuffer[this.ptrX][this.ptrY] = bit;
 		this.ptrY++;
-		if (this.ptrY >= this.depth) {
+		if (this.ptrY >= this.length) {
 			this.ptrY = 0;
 			this.ptrX++;
 		}
@@ -28,7 +30,7 @@ public class BlockInterleaver extends IntegerBufferChannel {
 		if (this.ptrX >= this.depth) {
 			this.ptrX = 0;
 
-			for (int i = 0; i < this.depth; i++) {
+			for (int i = 0; i < this.length; i++) {
 				for (int j = 0; j < this.depth; j++) {
 					this.buffer.add(this.inputBuffer[j][i]);
 				}
