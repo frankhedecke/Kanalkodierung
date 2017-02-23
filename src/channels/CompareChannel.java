@@ -14,16 +14,21 @@ public class CompareChannel extends IntegerBufferChannel {
 	public void pushInput(Integer bit) {
 		this.buffer.add(bit);
 	}
-	
+
 	public void pushComparandum(Integer bit) {
 		this.compareBuffer.add(bit);
 	}
-	
+
 	public boolean compare() {
 
 		while(! this.buffer.isEmpty()) {
-			if (this.buffer.remove(0) != this.compareBuffer.remove(0)) {
-
+			if (! this.compareBuffer.isEmpty()) {
+				if (this.buffer.remove(0) != this.compareBuffer.remove(0)) {
+					this.buffer.clear();
+					this.compareBuffer.clear();
+					return false;
+				}
+			} else {
 				this.buffer.clear();
 				this.compareBuffer.clear();
 				return false;
@@ -32,4 +37,25 @@ public class CompareChannel extends IntegerBufferChannel {
 
 		return true;
 	}
+
+	/*
+	public boolean compareLazy() {
+
+		while(! this.buffer.isEmpty()) {
+			if (! this.compareBuffer.isEmpty()) {
+				if (this.buffer.remove(0) != this.compareBuffer.remove(0)) {
+					this.buffer.clear();
+					this.compareBuffer.clear();
+					return false;
+				}
+			} else {
+				this.buffer.clear();
+				this.compareBuffer.clear();
+				return true;
+			}
+		}
+
+		return true;
+	}
+	*/
 }
