@@ -3,6 +3,8 @@ package main;
 import channels.Channel;
 import channels.SC_DecodeChannel;
 import channels.SC_EncodeChannel;
+import channels.SC_InterDecodeChannel;
+import channels.SC_InterEncodeChannel;
 import blockcode.BlockCode;
 
 public class SerialConcatenation {
@@ -32,11 +34,19 @@ public class SerialConcatenation {
 		return this.parameterL;
 	}
 
+	public Channel<Integer> createEncodeChannel() {
+		return new SC_EncodeChannel(this.outerCode, this.innerCode);
+	}
+
+	public Channel<Integer> createEncodeChannelWithInterleaver() {
+		return new SC_InterEncodeChannel(this.outerCode, this.innerCode);
+	}
+
 	public Channel<Integer> createDecodeChannel() {
 		return new SC_DecodeChannel(this.outerCode, this.innerCode);
 	}
 
-	public Channel<Integer> createEncodeChannel() {
-		return new SC_EncodeChannel(this.outerCode, this.innerCode);
+	public Channel<Integer> createDecodeChannelWithInterleaver() {
+		return new SC_InterDecodeChannel(this.outerCode, this.innerCode);
 	}
 }
