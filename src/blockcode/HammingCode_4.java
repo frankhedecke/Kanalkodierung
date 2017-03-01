@@ -1,5 +1,7 @@
 package blockcode;
 
+import channels.Channel;
+import channels.DecodeChannelNoECC;
 import entity.BinaryMatrix;
 import entity.BinaryWord;
 
@@ -21,14 +23,25 @@ public class HammingCode_4 extends AbstractBlockCode {
 		this.controlMatrix.setRow(2, new BinaryWord("0110011"));
 		this.controlMatrix.setRow(3, new BinaryWord("0001111"));
 	}
-	
+
 	@Override
 	public int[] getBitOrder() {
 		// Hamming bit order : k1-k2-l1-k3-l2-l3-l4
 		// Cat-Matrix bit order: l1-l2-l3-l4-k1-k2-k3
-		
+
 		int[] positions = { 3, 5, 6, 7, 1, 2, 4 };
 		return positions;
+	}
+
+	public BinaryWord decodeNoECC(BinaryWord input) {
+		// TODO check if input size == 7
+
+		BinaryWord information = new BinaryWord(4);
+		information.setElement(1, input.getElement(3));
+		information.setElement(2, input.getElement(5));
+		information.setElement(3, input.getElement(6));
+		information.setElement(4, input.getElement(7));
+		return information;
 	}
 
 	@Override
@@ -41,6 +54,7 @@ public class HammingCode_4 extends AbstractBlockCode {
 			input.toggleElement(syndrome);
 		}
 
+		// try and test decodeNoECC here
 		BinaryWord out = new BinaryWord(4);
 		out.setElement(1, input.getElement(3));
 		out.setElement(2, input.getElement(5));
@@ -55,9 +69,10 @@ public class HammingCode_4 extends AbstractBlockCode {
 		// bit order : k1-k2-l1-k3-l2-l3-l4
 		return this.generatorMatrix.multiplyN(input);
 	}
-	
+
 	@Override
 	public BinaryWord getRedundancy(BinaryWord input) {
+		// TODO check if input size == 4
 		BinaryWord encoded = this.encode(input);
 
 		BinaryWord redundancy = new BinaryWord(3);
@@ -75,5 +90,9 @@ public class HammingCode_4 extends AbstractBlockCode {
 	@Override
 	public int getL() {
 		return 4;
+	}
+
+	public Channel<Integer> getDecodeChannelNoECC() {
+		return new DecodeChannelNoECC(this);
 	}
 }
