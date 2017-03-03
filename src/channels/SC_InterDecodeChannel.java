@@ -1,6 +1,5 @@
 package channels;
 
-import main.BlockInterleaver;
 import blockcode.BlockCode;
 
 public class SC_InterDecodeChannel extends IntegerBufferChannel {

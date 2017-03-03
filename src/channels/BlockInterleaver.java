@@ -1,6 +1,4 @@
-package main;
-
-import channels.IntegerBufferChannel;
+package channels;
 
 public class BlockInterleaver extends IntegerBufferChannel {
 

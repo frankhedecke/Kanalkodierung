@@ -1,7 +1,7 @@
 package Tests;
 
+import channels.BlockInterleaver;
 import channels.Channel;
-import main.BlockInterleaver;
 
 public class TestBlockInterleaver {
 
