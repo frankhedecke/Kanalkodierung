@@ -2,13 +2,12 @@ package channels;
 
 import blockcode.BlockCode;
 
-public class SC_DecodeChannel extends IntegerBufferChannel {
+public class SC_DecodeChannel implements Channel<Integer> {
 
 	private Channel<Integer> outerDecodeChannel;
 	private Channel<Integer> innerDecodeChannel;
 
 	public SC_DecodeChannel(BlockCode outerCode, BlockCode innerCode) {
-		super();
 		this.outerDecodeChannel = outerCode.getDecodeChannel();
 		this.innerDecodeChannel = innerCode.getDecodeChannel();
 	}
@@ -21,9 +20,15 @@ public class SC_DecodeChannel extends IntegerBufferChannel {
 			int out1 = this.innerDecodeChannel.getOutput();
 			this.outerDecodeChannel.pushInput(out1);
 		}
-		while (this.outerDecodeChannel.hasOutput()) {
-			int out2 = this.outerDecodeChannel.getOutput();
-			this.buffer.add(out2);
-		}
+	}
+
+	@Override
+	public boolean hasOutput() {
+		return this.outerDecodeChannel.hasOutput();
+	}
+
+	@Override
+	public Integer getOutput() {
+		return this.outerDecodeChannel.getOutput();
 	}
 }

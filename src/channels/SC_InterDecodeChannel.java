@@ -2,14 +2,13 @@ package channels;
 
 import blockcode.BlockCode;
 
-public class SC_InterDecodeChannel extends IntegerBufferChannel {
+public class SC_InterDecodeChannel implements Channel<Integer> {
 
 	private Channel<Integer> outerDecodeChannel;
 	private Channel<Integer> innerDecodeChannel;
 	private Channel<Integer> deInterleaver;
 
 	public SC_InterDecodeChannel(BlockCode outerCode, BlockCode innerCode) {
-		super();
 		this.innerDecodeChannel = innerCode.getDecodeChannel();
 		this.outerDecodeChannel = outerCode.getDecodeChannel();
 		int depth = innerCode.getL();
@@ -29,9 +28,15 @@ public class SC_InterDecodeChannel extends IntegerBufferChannel {
 			int out = this.deInterleaver.getOutput();
 			this.outerDecodeChannel.pushInput(out);
 		}
-		while (this.outerDecodeChannel.hasOutput()) {
-			int out2 = this.outerDecodeChannel.getOutput();
-			this.buffer.add(out2);
-		}
+	}
+
+	@Override
+	public boolean hasOutput() {
+		return this.outerDecodeChannel.hasOutput();
+	}
+
+	@Override
+	public Integer getOutput() {
+		return this.outerDecodeChannel.getOutput();
 	}
 }
