@@ -15,6 +15,7 @@ public abstract class IntegerInputChannel extends IntegerBufferChannel {
 	@Override
 	public void pushInput(Integer bit) {
 		this.inputBuffer[this.inputCursor] = bit;
+		this.inputCursor++;
 
 		if (this.inputCursor == this.inputBufferSize) {
 			this.inputCursor = 0;

@@ -3,32 +3,22 @@ package channels;
 import entity.BinaryWord;
 import blockcode.BlockCode;
 
-public class EncodeChannel extends IntegerBufferChannel {
+public class EncodeChannel extends IntegerInputChannel {
 
 	private BlockCode code;
-	private int[] inputBuffer;
-	private int inputPtr;
 
 	public EncodeChannel(BlockCode code) {
-		super();
+		super(code.getL());
 		this.code = code;
-		this.inputBuffer = new int[code.getL()];
-		this.inputPtr = 0;
 	}
 
 	@Override
-	public void pushInput(Integer bit) {
-		this.inputBuffer[this.inputPtr] = bit;
-		this.inputPtr++;
+	public void process() {
+		BinaryWord input = new BinaryWord(inputBuffer);
+		BinaryWord output = code.encode(input);
 
-		if (this.inputPtr == this.inputBuffer.length) {
-			this.inputPtr = 0;
-			BinaryWord input = new BinaryWord(inputBuffer);
-			BinaryWord output = code.encode(input);
-
-			for (int i : output.toArray()) {
-				super.buffer.add(i);
-			}
+		for (int i : output.toArray()) {
+			super.buffer.add(i);
 		}
 	}
 }
