@@ -3,6 +3,7 @@ package blockcode;
 import channels.Channel;
 import channels.DecodeChannel;
 import channels.EncodeChannel;
+import channels.EncodeChannelOrdered;
 import entity.BinaryMatrix;
 
 public abstract class AbstractBlockCode implements BlockCode{
@@ -28,5 +29,10 @@ public abstract class AbstractBlockCode implements BlockCode{
 	@Override
 	public Channel<Integer> getEncodeChannel() {
 		return new EncodeChannel(this);
+	}
+
+	@Override
+	public Channel<Integer> createOrderedEncodeChannel() {
+		return new EncodeChannelOrdered(this);
 	}
 }
