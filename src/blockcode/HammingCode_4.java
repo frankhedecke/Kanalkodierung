@@ -83,6 +83,11 @@ public class HammingCode_4 extends AbstractBlockCode {
 	}
 
 	@Override
+	public int getK() {
+		return 3;
+	}
+
+	@Override
 	public int getN() {
 		return 7;
 	}

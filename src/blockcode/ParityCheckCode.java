@@ -87,6 +87,11 @@ public class ParityCheckCode extends AbstractBlockCode {
 	}
 
 	@Override
+	public int getK() {
+		return 1;
+	}
+
+	@Override
 	public int getN() {
 		return this.paraL + 1;
 	}

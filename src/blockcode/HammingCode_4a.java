@@ -55,7 +55,7 @@ public class HammingCode_4a extends AbstractBlockCode {
 		// bit order : l4-l3-l2-k3-l1-k2-k1
 		return this.generatorMatrix.multiplyN(input);
 	}
-	
+
 	@Override
 	public BinaryWord getRedundancy(BinaryWord input) {
 		BinaryWord encoded = this.encode(input);
@@ -65,6 +65,11 @@ public class HammingCode_4a extends AbstractBlockCode {
 		redundancy.setElement(2, encoded.getElement(2));
 		redundancy.setElement(3, encoded.getElement(4));
 		return redundancy;
+	}
+
+	@Override
+	public int getK() {
+		return 3;
 	}
 
 	@Override

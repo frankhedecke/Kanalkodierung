@@ -18,6 +18,8 @@ public interface BlockCode {
 
 	public BinaryMatrix getControlMatrix();
 
+	public int getK();
+
 	public int getN();
 
 	public int getL();
