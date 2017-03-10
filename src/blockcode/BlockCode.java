@@ -24,6 +24,8 @@ public interface BlockCode {
 
 	public int getL();
 
+	public float getCodeRate();
+
 	public Channel<Integer> getDecodeChannel();
 
 	public Channel<Integer> getEncodeChannel();

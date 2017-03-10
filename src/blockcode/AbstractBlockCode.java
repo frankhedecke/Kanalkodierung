@@ -35,4 +35,9 @@ public abstract class AbstractBlockCode implements BlockCode{
 	public Channel<Integer> createOrderedEncodeChannel() {
 		return new EncodeChannelOrdered(this);
 	}
+
+	@Override
+	public float getCodeRate() {
+		return 1.0f * this.getL() / this.getN();
+	}
 }
