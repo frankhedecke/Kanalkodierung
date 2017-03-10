@@ -66,7 +66,7 @@ public class BF_DecodeChannel extends IntegerInputChannel {
 				for (int e : errors)
 					if (e > max_error) max_error = e;
 				// flip positions
-				for (int i = 0; i < this.K; i++) {
+				for (int i = 0; i < this.N; i++) {
 					if (errors[i] == max_error) {
 						y[i] = flip(y[i]);
 					}
