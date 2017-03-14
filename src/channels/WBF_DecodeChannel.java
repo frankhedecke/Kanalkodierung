@@ -17,8 +17,7 @@ public class WBF_DecodeChannel extends FloatInputChannel {
 		super(code.getN());
 		this.code = code;
 		this.controlMatrix = code.getControlMatrix();
-		// TODO BlockCode getK()
-		this.K = this.code.getN() - this.code.getL();
+		this.K = this.code.getK();
 		this.N = this.code.getN();
 		this.max_iter = max_iter;
 	}

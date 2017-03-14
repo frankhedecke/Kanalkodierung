@@ -2,11 +2,13 @@ package main;
 
 import blockcode.AbstractBlockCode;
 import blockcode.BlockCode;
+import channels.BF_DecodeChannel;
 import channels.Channel;
 import channels.PC_DecodeChannelNoECC;
 import channels.PC_HardIterDecodeChannel;
 import channels.PC_IterDecodeChannel;
 import channels.PC_EncodeChannel;
+import channels.WBF_DecodeChannel;
 import entity.BinaryMatrix;
 import entity.BinaryWord;
 
@@ -160,6 +162,14 @@ public class ParallelConcatenation extends AbstractBlockCode {
 
 	public Channel<Float> getSoftDecodeChannel() {
 		return new PC_IterDecodeChannel(this.code);
+	}
+
+	public Channel<Integer> createBFDecodeChannel(int max_iter) {
+		return new BF_DecodeChannel(this, max_iter);
+	}
+
+	public Channel<Float> createWBFDecodeChannel(int max_iter) {
+		return new WBF_DecodeChannel(this, max_iter);
 	}
 
 	public Channel<Integer> createPCEncodeChannel() {
