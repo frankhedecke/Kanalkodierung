@@ -48,8 +48,7 @@ public class BinaryWord {
 	}
 
 	// TODO make a static addition method
-
-	// TODO do XOR with Integer and not String
+	// TODO do XOR bitwise
 	/**
 	 * Computes the sum (XOR) of this and a given BinaryWord
 	 * 
@@ -68,9 +67,9 @@ public class BinaryWord {
 							+ " bit word");
 		}
 
-		int x1 = Integer.parseInt(this.toString(), 2);
-		int x2 = Integer.parseInt(suplement.toString(), 2);
-		String sum = Integer.toBinaryString(x1 ^ x2); // sum may have no leading
+		long x1 = Long.parseLong(this.toString(), 2);
+		long x2 = Long.parseLong(suplement.toString(), 2);
+		String sum = Long.toBinaryString(x1 ^ x2); // sum may have no leading
 														// zeros
 
 		while (sum.length() != this.getLength()) {
@@ -103,21 +102,20 @@ public class BinaryWord {
 
 		return distance;
 	}
-	
+
 	/**
 	 * reverse the BinaryWord
 	 *   (001110) -> (011100)
 	 */
 	public void reverse() {
-		
+
 		int length = this.getLength();
 		int[] newContent = new int[length];
-		
-		
+
 		for (int i = 0; i < length; i++) {
 			newContent[i] = content[length - i - 1];
 		}
-		
+
 		this.content = newContent;
 	}
 
