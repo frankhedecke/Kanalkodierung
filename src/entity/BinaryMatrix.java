@@ -1,6 +1,5 @@
 package entity;
 
-
 public class BinaryMatrix {
 
 	private int[][] content;
@@ -55,7 +54,7 @@ public class BinaryMatrix {
 		}
 		return out;
 	}
-	
+
 	/**
 	 * Multiplies a M x N BinaryMatrix with a M-bit BinaryWord
 	 * 
@@ -68,10 +67,10 @@ public class BinaryMatrix {
 			System.err.println("MISSMATCH");
 
 			System.err.println("You try to multiply a " + x.getLength()
-					+ " bit word with a " + this.getDimensionN() + "X"
+					+ " bit word with a " + this.getDimensionM() + "X"
 					+ this.getDimensionN() + " Matrix.");
 		}
-		
+
 		this.transpose();
 
 		BinaryWord out = new BinaryWord(this.getDimensionN());
@@ -80,7 +79,7 @@ public class BinaryMatrix {
 				out = out.add(this.getRow(i));
 			}
 		}
-		
+
 		this.transpose();
 		return out;
 	}
@@ -97,6 +96,31 @@ public class BinaryMatrix {
 			}
 		}
 		this.content = newMatrix;
+	}
+
+	/**
+	 * Multiplies a M x N BinaryMatrix with a N x P BinaryMatrix
+	 *
+	 * @param m
+	 *            a N x P BinaryMatrix
+	 * @return product (M x P BinaryMatrix)
+	 */
+	public BinaryMatrix multiply(BinaryMatrix m) {
+		if (m.getDimensionM() != this.getDimensionN()) {
+			// TODO explain missmatch better
+			System.err.println("MISSMATCH MATRIX MULTIPLICATION");
+			return null;
+		}
+
+		BinaryMatrix product = new BinaryMatrix(this.getDimensionM(), m.getDimensionN());
+
+		for (int row = 1; row <= this.getDimensionM(); row ++) {
+			BinaryWord w = this.getRow(row);
+			BinaryWord row_product = m.multiplyM(w);
+			product.setRow(row, row_product);
+		}
+
+		return product;
 	}
 
 	/**
