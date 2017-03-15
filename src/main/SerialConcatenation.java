@@ -131,6 +131,17 @@ public class SerialConcatenation extends AbstractBlockCode {
 	}
 
 	private void constructH() {
+		int end_m = this.parameterK;
+		int end_n = this.parameterL;
+		for (int m = 1; m <= end_m; ++m) {
+			for (int n = 1; n <= end_n; ++n) {
+				int value = this.generatorMatrix.getElement(this.parameterL + m, n);
+				this.controlMatrix.setElement(m, n, value);
+			}
+		}
+		// write identity matrix
+		for (int i = this.parameterL + 1; i <= this.parameterN; ++i)
+			this.controlMatrix.setElement(i - this.parameterL, i, 1);
 	}
 
 	@Override
