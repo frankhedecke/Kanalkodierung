@@ -18,8 +18,6 @@ public class ParallelConcatenation extends AbstractBlockCode {
 	private int parameterK;
 	private int parameterN;
 	private int parameterL;
-	private BinaryMatrix controlMatrix;
-	private BinaryMatrix generatorMatrix;
 
 	public ParallelConcatenation(BlockCode code) {
 		this.code = code;
@@ -121,14 +119,17 @@ public class ParallelConcatenation extends AbstractBlockCode {
 			this.controlMatrix.setElement(i - this.parameterL, i, 1);
 	}
 
+	@Override
 	public int getK() {
 		return this.parameterK;
 	}
 
+	@Override
 	public int getN() {
 		return this.parameterN;
 	}
 
+	@Override
 	public int getL() {
 		return this.parameterL;
 	}
@@ -141,6 +142,7 @@ public class ParallelConcatenation extends AbstractBlockCode {
 		return this.controlMatrix;
 	}
 
+	@Override
 	public int[] getBitOrder() {
 		int[] positions = new int[this.parameterN];
 		for (int i = 1; i <= this.parameterN; ++i)
@@ -192,6 +194,8 @@ public class ParallelConcatenation extends AbstractBlockCode {
 
 	@Override
 	public BinaryWord encode(BinaryWord input) {
+		if (input.getLength() != this.parameterL)
+			return null;
 		return this.generatorMatrix.multiplyN(input);
 	}
 
