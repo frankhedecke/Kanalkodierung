@@ -1,5 +1,6 @@
 package main;
 
+import channels.BF_DecodeChannel;
 import channels.Channel;
 import channels.SC_DecodeChannel;
 import channels.SC_EncodeChannel;
@@ -7,6 +8,7 @@ import channels.SC_InterDecodeChannel;
 import channels.SC_InterEncodeChannel;
 import channels.SC_IterDecodeChannel;
 import channels.SC_IterEncodeChannel;
+import channels.WBF_DecodeChannel;
 import entity.BinaryMatrix;
 import entity.BinaryWord;
 import blockcode.AbstractBlockCode;
@@ -181,6 +183,14 @@ public class SerialConcatenation extends AbstractBlockCode {
 
 	public Channel<Float> createIterativeDecodeChannel() {
 		return new SC_IterDecodeChannel(this.outerCode, this.innerCode);
+	}
+
+	public Channel<Integer> createBFDecodeChannel(int max_iter) {
+		return new BF_DecodeChannel(this, max_iter);
+	}
+
+	public Channel<Float> createWBFDecodeChannel(int max_iter) {
+		return new WBF_DecodeChannel(this, max_iter);
 	}
 
 	@Override

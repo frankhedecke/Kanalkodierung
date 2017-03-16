@@ -25,7 +25,7 @@ public class Experiment_SC_WeightedBitFlipping {
 		float snr_step  =  0.1f;
 		int cycles =  10000;
 
-		System.out.println("parallel concatenation of a (7,4,3) Hamming Code");
+		System.out.println("serial concatenation of a (7,4,3) Hamming Code");
 		System.out.println("-> code rate = " + scat.getCodeRate());
 		System.out.print("noisy channel with SNR from " + snr_start + " dB to ");
 		System.out.println( snr_end + " dB in " + snr_step + " dB steps");

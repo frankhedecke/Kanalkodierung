@@ -33,7 +33,7 @@ public class Experiment_SC_Bitflipping {
 		System.out.println();
 
 		for (float snr = snr_start; snr <= snr_end + 0.01; snr += snr_step) {
-			System.out.format("SNR = %4.1f -- ", snr);
+			System.out.format("SNR -- %4.1f -- ", snr);
 
 			// setup source channel
 			Channel<Integer> src = new RandomSource(2, 14337l);
@@ -45,11 +45,9 @@ public class Experiment_SC_Bitflipping {
 			int success_count = 0;
 
 			// modify cycles
-			if (snr > 8.0) {
-				cycles = 500000;
-			} else if (snr > 7.0) {
+			if (snr > 9.0) {
 				cycles = 100000;
-			} else if (snr > 6.0) {
+			} else if (snr > 8.0) {
 				cycles =  50000;
 			}
 

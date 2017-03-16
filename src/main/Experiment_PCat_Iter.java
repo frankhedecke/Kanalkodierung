@@ -13,7 +13,7 @@ public class Experiment_PCat_Iter {
 	public static void main(String[] args) {
 
 		BlockCode code = new HammingCode_4();
-		
+
 		ParallelConcatenation pcat = new ParallelConcatenation(code);
 		Channel<Integer> encoder = pcat.getEncodeChannel();
 		Channel<Float> decoder = pcat.getSoftDecodeChannel();
@@ -28,13 +28,12 @@ public class Experiment_PCat_Iter {
 		System.out.println("-> code rate = " + pcat.getCodeRate());
 		System.out.print("noisy channel with SNR from " + snr_start + " dB to ");
 		System.out.println( snr_end + " dB in " + snr_step + " dB steps");
+		System.out.println("iterative soft decision decoding");
 		System.out.println();
 
-		System.out.println("TIME: " + System.nanoTime());
-
 		for (float snr = snr_start; snr <= snr_end + 0.01; snr += snr_step) {
-			System.out.format("SNR = %4.1f -- ", snr);
-			
+			System.out.format("SNR -- %4.1f -- ", snr);
+
 			// setup source channel
 			Channel<Integer> src = new RandomSource(2, 14337l);
 			// setup channel noisy channel
@@ -43,12 +42,14 @@ public class Experiment_PCat_Iter {
 			// setup counters
 			int error_count = 0;
 			int success_count = 0;
-			
+
 			// modify cycles
-			if (snr > 6.0) {
-				cycles =  50000;
+			if (snr > 8.0) {
+				cycles = 500000;
 			} else if (snr > 7.0) {
 				cycles = 100000;
+			} else if (snr > 6.0) {
+				cycles =  50000;
 			}
 
 			for (int cycle = 0; cycle < cycles ; ++cycle) {
@@ -88,7 +89,6 @@ public class Experiment_PCat_Iter {
 			}
 			System.out.format("ok -- %5d --  and fails -- %5d -- cycles -- %8d", success_count, error_count, cycles);
 			System.out.println();
-			System.out.println("TIME: " + System.nanoTime());
 		}
 	}
 }
